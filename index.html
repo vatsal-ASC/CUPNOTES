@@ -7,205 +7,294 @@
 <meta name="description" content="Rate the cafes we go to. What we ordered, how it tasted, and whether we'd go back.">
 <meta property="og:title" content="Cup Notes">
 <meta property="og:description" content="Rate the cafes we go to. What we ordered, how it tasted, and whether we'd go back.">
-<meta name="theme-color" content="#F6F7F3" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#1C1713" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#F2F7FF">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='15' fill='%239E1F32'/%3E%3Cpath d='M9 13h12v4a5 5 0 0 1-5 5h-2a5 5 0 0 1-5-5z' fill='%23fff'/%3E%3Cpath d='M21 14.5h1.2a2 2 0 0 1 0 4H21' fill='none' stroke='%23fff' stroke-width='1.6'/%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='15' fill='%23FFD66B' stroke='%232E211B' stroke-width='2'/%3E%3Cpath d='M9 12h12v5a5 5 0 0 1-5 5h-2a5 5 0 0 1-5-5z' fill='%23fff' stroke='%232E211B' stroke-width='1.6'/%3E%3Cpath d='M21 13.5h1.2a2 2 0 0 1 0 4H21' fill='none' stroke='%232E211B' stroke-width='1.6'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=Young+Serif&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shrikhand&family=Nunito:wght@400;600;700;800;900&family=Caveat:wght@600;700&display=swap">
 <style>
-/* Layout: big serif name with a live flavour-wheel ring beside it; below, a sticky step-by-step review card next to the wall of reviews (stacked on phones).
-   The one loud thing is the flavour-wheel colour set; everything else stays porcelain, roast-brown and coffee-cherry. */
+/* Concept: a cafe sticker book on a pale sky page. Everything is outlined in espresso ink with chunky offset shadows, like die-cut stickers.
+   The memorable thing: a coffee cup that fills up as you move through the six steps, and rating cups that pour when tapped.
+   Type: Shrikhand (retro cafe-sign display, drawn by an Indian type designer) for names; Nunito for reading; Caveat for scribbled barista tips. */
 :root{
-  --paper:#F6F7F3; --card:#FFFFFF; --wash:#EDEFE8; --line:#DFE1D8;
-  --ink:#221915; --muted:#69615A;
-  --cherry:#9E1F32; --cherry-ink:#FFFFFF; --good:#2F7A4F; --bad:#A33A2A;
-  --f-floral:#C2559A; --f-fruity:#D63B3B; --f-citrus:#DDA215; --f-fermented:#97A033; --f-green:#4A9A5A;
-  --f-roasted:#A66A3C; --f-spices:#8E2C3E; --f-nutty:#6B4A33; --f-sweet:#E2782C;
-  --serif:"Young Serif", Georgia, "Times New Roman", serif;
-  --sans:"Hanken Grotesk", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --sky:#F2F7FF; --paper:#FFFFFF; --ink:#2E211B; --muted:#6E6159; --hair:#E2E8F3;
+  --butter:#FFD66B; --berry:#F2547D; --mint:#7FDCB6; --lilac:#C3B1FF; --peach:#FFB197; --bluey:#9FD0FF;
+  --pink-50:#FFE6EE; --mint-50:#DDF6EC; --sky-50:#E1EFFF; --butter-50:#FFF4D1; --lilac-50:#EEE8FF; --peach-50:#FFE9E0;
+  --coffee:#9A5B33; --crema:#E7B98A; --good:#1F8A5B; --bad:#C2342E;
+  --display:"Shrikhand", "Georgia", serif;
+  --body:"Nunito", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --hand:"Caveat", "Comic Sans MS", cursive;
+  --pop:3px 3px 0 var(--ink);
   color-scheme:light;
-}
-@media (prefers-color-scheme: dark){
-  :root{
-    --paper:#1C1713; --card:#25201B; --wash:#2E2822; --line:#3B332C;
-    --ink:#F1ECE5; --muted:#B1A699;
-    --cherry:#EC7385; --cherry-ink:#2B0B11; --good:#7CC79A; --bad:#EE8A78;
-    --f-spices:#C9586D; --f-nutty:#A67C5C; --f-roasted:#C88A57;
-    color-scheme:dark;
-  }
 }
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
-body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.5}
+body{margin:0;background:var(--sky);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.5;
+  background-image:radial-gradient(circle at 1px 1px, #D7E3F7 1.2px, transparent 1.3px);background-size:22px 22px}
 img{max-width:100%}
 [hidden]{display:none!important}
 button,input,select,textarea{font:inherit;color:inherit}
-:focus-visible{outline:2px solid var(--cherry);outline-offset:2px}
+:focus-visible{outline:3px solid var(--berry);outline-offset:3px}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0;padding:0;margin:-1px}
+.wrap{max-width:1160px;margin:0 auto;padding-top:calc(24px + env(safe-area-inset-top, 0px));padding-bottom:calc(80px + env(safe-area-inset-bottom, 0px));padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px))}
 
-.wrap{max-width:1160px;margin:0 auto;padding-top:calc(28px + env(safe-area-inset-top, 0px));padding-bottom:calc(72px + env(safe-area-inset-bottom, 0px));padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px))}
+/* ---------- Header ---------- */
+.mast{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:20px;margin-bottom:28px}
+.mast h1{font-family:var(--display);font-weight:400;font-size:clamp(3rem,10vw,5.2rem);line-height:.95;margin:0;letter-spacing:.005em;color:var(--ink);
+  text-shadow:3px 3px 0 var(--butter)}
+.lede{margin:12px 0 14px;max-width:38ch;font-size:1.1rem;color:var(--muted)}
+.pills{display:flex;flex-wrap:wrap;gap:8px}
+.pill-stat{display:inline-flex;align-items:baseline;gap:6px;background:var(--paper);border:2px solid var(--ink);border-radius:999px;padding:4px 12px;font-weight:700;font-size:14px}
+.pill-stat b{font-size:17px;font-weight:900;font-variant-numeric:tabular-nums}
+.mascot{width:150px;height:150px}
+.mascot .steam path{animation:rise 3.2s ease-in-out infinite;transform-origin:center}
+.mascot .steam path:nth-child(2){animation-delay:.5s}
+.mascot .steam path:nth-child(3){animation-delay:1s}
+@keyframes rise{0%,100%{transform:translateY(2px);opacity:.35}50%{transform:translateY(-4px);opacity:1}}
+@media (max-width:620px){.mast{grid-template-columns:minmax(0,1fr) 96px;gap:10px}.mascot{width:96px;height:96px}}
 
-/* Masthead */
-.mast{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:24px;align-items:end;margin-bottom:36px}
-.mast h1{font-family:var(--serif);font-weight:400;font-size:clamp(2.8rem,9vw,4.6rem);line-height:.92;letter-spacing:-.02em;margin:0}
-.lede{margin:14px 0 0;max-width:40ch;color:var(--muted);font-size:1.05rem}
-.palate{display:flex;gap:16px;align-items:center}
-.palate svg{width:112px;height:112px;flex:none;display:block}
-.palate .legend{list-style:none;margin:0;padding:0;font-size:14px;display:grid;gap:4px;min-width:0}
-.palate .legend li{display:flex;align-items:center;gap:8px;white-space:nowrap}
-.palate .cap{font-size:13px;color:var(--muted);margin:0 0 6px}
-.dot{width:10px;height:10px;border-radius:50%;flex:none;display:inline-block}
-.count{color:var(--muted);font-variant-numeric:tabular-nums}
-@media (max-width:640px){.mast{grid-template-columns:minmax(0,1fr)}.palate svg{width:92px;height:92px}}
-
-.layout{display:grid;grid-template-columns:minmax(0,1fr);gap:40px}
-@media (min-width:920px){
-  .layout{grid-template-columns:minmax(0,420px) minmax(0,1fr);align-items:start}
+.layout{display:grid;grid-template-columns:minmax(0,1fr);gap:36px}
+@media (min-width:940px){
+  .layout{grid-template-columns:minmax(0,430px) minmax(0,1fr);align-items:start}
   .composer{position:sticky;top:calc(16px + env(safe-area-inset-top, 0px));max-height:calc(100vh - 32px);overflow-y:auto}
 }
 
-/* Composer */
-.composer{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px}
-.progress{list-style:none;margin:0 0 22px;padding:0;display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:5px}
-.progress li{font-size:12px;color:var(--muted);border-top:3px solid var(--line);padding-top:6px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.progress li.done{border-color:var(--ink);color:var(--ink)}
-.progress li.now{border-color:var(--cherry);color:var(--ink);font-weight:600}
-.step h2{font-family:var(--serif);font-weight:400;font-size:1.65rem;line-height:1.15;margin:0 0 6px;text-wrap:balance}
-.hint{color:var(--muted);margin:0 0 16px;font-size:15px;max-width:60ch}
-.fl{display:block;font-size:14px;font-weight:600;margin:16px 0 6px}
-.opt{font-weight:400;color:var(--muted)}
-.field{width:100%;background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:12px 13px;font-size:16px}
-.field:focus{border-color:var(--ink);outline:none}
-textarea.field{min-height:104px;resize:vertical}
-fieldset{border:0;margin:0 0 20px;padding:0;min-width:0}
-legend{font-weight:600;font-size:15px;margin:0 0 9px;padding:0}
+/* ---------- Composer ---------- */
+.composer{background:var(--paper);border:2.5px solid var(--ink);border-radius:24px;box-shadow:6px 6px 0 var(--ink);padding:20px 20px 22px}
+.meter{display:flex;align-items:center;gap:14px;padding-bottom:16px;margin-bottom:18px;border-bottom:2px dashed var(--hair)}
+.meter svg{width:58px;height:58px;flex:none}
+.meter .liquid{transition:transform .6s cubic-bezier(.3,1.4,.5,1);transform-origin:50% 100%;transform-box:fill-box}
+.meter .txt{font-weight:800;font-size:15px;line-height:1.3}
+.meter .txt span{display:block;font-weight:600;color:var(--muted);font-size:13.5px}
+.dots{display:flex;gap:5px;margin-top:6px}
+.dots i{width:22px;height:6px;border-radius:3px;background:var(--hair)}
+.dots i.done{background:var(--coffee)}
+.dots i.now{background:var(--berry)}
+
+.step-top{display:flex;align-items:center;gap:12px;margin-bottom:6px}
+.step-top svg{width:54px;height:54px;flex:none}
+.step h2{font-family:var(--body);font-weight:900;font-size:1.55rem;line-height:1.15;margin:0;text-wrap:balance}
+.hint{color:var(--muted);margin:4px 0 14px;font-size:15.5px;max-width:60ch}
+.fl{display:block;font-size:15px;font-weight:800;margin:16px 0 7px}
+.opt{font-weight:600;color:var(--muted)}
+.field{width:100%;background:var(--sky);border:2px solid var(--ink);border-radius:14px;padding:12px 14px;font-size:16px;font-weight:600}
+.field::placeholder{color:#9A8F88;font-weight:500}
+.field:focus{outline:none;background:var(--paper);box-shadow:0 0 0 4px var(--butter)}
+textarea.field{min-height:108px;resize:vertical}
+fieldset{border:0;margin:0 0 18px;padding:0;min-width:0}
+legend{font-weight:800;font-size:15.5px;margin:0 0 9px;padding:0}
 
 .chips{display:flex;flex-wrap:wrap;gap:8px}
 .chip{position:relative;display:inline-flex}
 .chip input{position:absolute;opacity:0;pointer-events:none}
-.chip span{display:inline-flex;align-items:center;gap:8px;padding:9px 14px;border:1px solid var(--line);border-radius:999px;cursor:pointer;font-size:15px;background:var(--paper);transition:border-color .15s,background .15s}
-.chip span:hover{border-color:var(--muted)}
-.chip small{color:var(--muted);font-size:13px}
-.chip input:checked + span{background:var(--ink);color:var(--paper);border-color:var(--ink)}
-.chip input:checked + span small{color:inherit;opacity:.75}
-.chip input:focus-visible + span{outline:2px solid var(--cherry);outline-offset:2px}
+.chip span{display:inline-flex;align-items:center;gap:6px;padding:9px 14px;border:2px solid var(--ink);border-radius:999px;cursor:pointer;font-size:15px;font-weight:700;background:var(--paper);transition:transform .12s, background .12s, box-shadow .12s}
+.chip span:hover{transform:translateY(-1px);box-shadow:2px 2px 0 var(--ink)}
+.chip small{color:var(--muted);font-weight:600;font-size:13px}
+.chip input:checked + span{background:var(--chipc, var(--butter));box-shadow:var(--pop)}
+.chip input:checked + span small{color:var(--ink)}
+.chip input:focus-visible + span{outline:3px solid var(--berry);outline-offset:3px}
+.c-pink{--chipc:var(--pink-50)} .c-mint{--chipc:var(--mint)} .c-lilac{--chipc:var(--lilac)}
 
-/* Flavour family picker */
-.wheel{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px}
+/* Flavour stickers */
+.wheel{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+@media (max-width:400px){.wheel{grid-template-columns:repeat(2,minmax(0,1fr))}}
 .fam{position:relative}
 .fam input{position:absolute;opacity:0;pointer-events:none}
-.fam span{display:grid;grid-template-columns:auto minmax(0,1fr);column-gap:9px;align-items:center;align-content:start;padding:10px 12px;border:1px solid var(--line);border-radius:12px;cursor:pointer;background:var(--paper);height:100%;transition:border-color .15s,background .15s}
-.fam b{font-weight:600;font-size:15px;line-height:1.25}
-.fam small{grid-column:2;color:var(--muted);font-size:12.5px;line-height:1.3}
-.fam .dot{width:12px;height:12px;grid-row:1}
-.fam input:checked + span{border-color:var(--c);background:color-mix(in srgb, var(--c) 13%, var(--card));box-shadow:inset 0 0 0 1px var(--c)}
-.fam input:focus-visible + span{outline:2px solid var(--cherry);outline-offset:2px}
+.fam span{display:flex;flex-direction:column;align-items:center;text-align:center;gap:3px;padding:12px 6px 10px;border:2px solid var(--ink);border-radius:18px;cursor:pointer;background:var(--paper);height:100%;transition:transform .12s, background .12s, box-shadow .12s}
+.fam span:hover{transform:rotate(-2deg)}
+.fam .ficon{width:34px;height:34px}
+.fam b{font-weight:800;font-size:14.5px;line-height:1.2}
+.fam small{color:var(--muted);font-size:12px;line-height:1.25}
+.fam input:checked + span{background:var(--tint);box-shadow:var(--pop);transform:rotate(-2deg) scale(1.03)}
+.fam input:checked + span small{color:var(--ink)}
+.fam input:focus-visible + span{outline:3px solid var(--berry);outline-offset:3px}
 
 /* Intensity scales */
-.scale{margin:0 0 18px}
+.scale{margin:0 0 16px}
 .scale .row{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px}
 .scale label{position:relative;display:block;cursor:pointer}
 .scale input{position:absolute;opacity:0;pointer-events:none}
-.scale label span{display:block;height:36px;border:1px solid var(--line);border-radius:10px;background:var(--paper);text-align:center;line-height:34px;font-size:14px;color:var(--muted);font-variant-numeric:tabular-nums;transition:background .15s}
-.scale input:checked + span{background:var(--ink);color:var(--paper);border-color:var(--ink)}
-.scale input:focus-visible + span{outline:2px solid var(--cherry);outline-offset:2px}
-.scale .ends{display:flex;justify-content:space-between;font-size:13px;color:var(--muted);margin-top:5px;gap:12px}
+.scale label span{display:block;height:38px;border:2px solid var(--ink);border-radius:12px;background:var(--paper);text-align:center;line-height:34px;font-weight:800;font-variant-numeric:tabular-nums;transition:background .12s, box-shadow .12s}
+.scale label:nth-child(1) input:checked + span{background:var(--sky-50)}
+.scale label:nth-child(2) input:checked + span{background:var(--bluey)}
+.scale label:nth-child(3) input:checked + span{background:var(--mint)}
+.scale label:nth-child(4) input:checked + span{background:var(--butter)}
+.scale label:nth-child(5) input:checked + span{background:var(--peach)}
+.scale input:checked + span{box-shadow:var(--pop)}
+.scale input:focus-visible + span{outline:3px solid var(--berry);outline-offset:3px}
+.scale .ends{display:flex;justify-content:space-between;font-size:13.5px;color:var(--muted);font-weight:600;margin-top:5px;gap:12px}
 
-.tip{font-size:14px;color:var(--muted);margin:-6px 0 18px;max-width:60ch}
-.tip b{color:var(--ink);font-weight:600}
+.tip{position:relative;font-family:var(--hand);font-size:1.32rem;line-height:1.2;color:var(--ink);background:var(--butter-50);border:2px dashed #E7C35A;border-radius:14px;padding:9px 13px 9px 44px;margin:2px 0 18px;transform:rotate(-.6deg)}
+.tip::before{content:"";position:absolute;left:12px;top:11px;width:22px;height:22px;background:no-repeat center/contain url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2a7 7 0 0 0-4 12.7V18h8v-3.3A7 7 0 0 0 12 2z' fill='%23FFD66B' stroke='%232E211B' stroke-width='1.8'/%3E%3Cpath d='M9 21h6' stroke='%232E211B' stroke-width='1.8' stroke-linecap='round'/%3E%3C/svg%3E")}
 
-.rate{display:flex;gap:6px}
-.cup-opt{cursor:pointer;border-radius:10px;padding:3px;line-height:0}
-.cup-opt:has(input:focus-visible){outline:2px solid var(--cherry);outline-offset:2px}
-.cup{display:block}
-.cup .b{fill:transparent;stroke:var(--ink);stroke-width:1.5}
-.cup .h,.cup .s{fill:none;stroke:var(--ink);stroke-width:1.5;stroke-linecap:round}
-.on .cup .b{fill:var(--ink)}
-.cup-opt .cup{width:38px;height:38px}
-.ratelbl{font-size:14px;margin:6px 0 0;min-height:1.4em;color:var(--muted)}
-.ratelbl b{color:var(--ink)}
+.rate{display:flex;gap:4px}
+.cup-opt{cursor:pointer;border-radius:12px;padding:2px;line-height:0;transition:transform .15s}
+.cup-opt:hover{transform:translateY(-2px) rotate(-4deg)}
+.cup-opt:has(input:focus-visible){outline:3px solid var(--berry);outline-offset:2px}
+.mcup{display:block}
+.mcup .pour{transform:scaleY(0);transform-origin:50% 100%;transform-box:fill-box;transition:transform .35s cubic-bezier(.3,1.5,.5,1)}
+.on .mcup .pour{transform:scaleY(1)}
+.cup-opt .mcup{width:46px;height:46px}
+.ratelbl{font-family:var(--hand);font-size:1.5rem;margin:4px 0 0;min-height:1.4em;color:var(--berry)}
 
-.photo-btn{display:inline-flex;align-items:center;gap:9px;padding:11px 15px;border:1px dashed var(--muted);border-radius:12px;cursor:pointer;background:var(--paper);font-size:15px}
-#photo:focus-visible + .photo-btn{outline:2px solid var(--cherry);outline-offset:2px}
+.photo-btn{display:inline-flex;align-items:center;gap:9px;padding:11px 16px;border:2px dashed var(--ink);border-radius:14px;cursor:pointer;background:var(--sky-50);font-weight:700;font-size:15px}
+.photo-btn:hover{background:var(--mint-50)}
+#photo:focus-visible + .photo-btn{outline:3px solid var(--berry);outline-offset:3px}
 .prev{display:flex;align-items:center;gap:12px;margin-top:10px}
-.prev img{width:88px;height:88px;object-fit:cover;border-radius:10px}
+.prev img{width:92px;height:92px;object-fit:cover;border-radius:14px;border:2px solid var(--ink);transform:rotate(-3deg)}
 
 .nav{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:22px;flex-wrap:wrap}
-.nav .right{display:flex;gap:10px;margin-left:auto}
-.btn{font-weight:600;font-size:15px;border-radius:999px;padding:11px 20px;border:1px solid transparent;cursor:pointer}
-.btn.primary{background:var(--cherry);color:var(--cherry-ink)}
-.btn.ghost{background:transparent;border-color:var(--line)}
-.btn.link{background:none;border:0;padding:11px 6px;color:var(--muted);text-decoration:underline;font-weight:500}
-.btn.sm{padding:7px 13px;font-size:14px}
-.btn:disabled{opacity:.55;cursor:default}
+.nav .right{display:flex;gap:8px;margin-left:auto;align-items:center}
+.btn{font-weight:900;font-size:16px;border-radius:999px;padding:11px 22px;border:2.5px solid var(--ink);cursor:pointer;background:var(--paper);color:var(--ink);transition:transform .1s, box-shadow .1s}
+.btn.primary{background:var(--butter);box-shadow:var(--pop)}
+.btn.primary:hover{transform:translate(-1px,-1px);box-shadow:4px 4px 0 var(--ink)}
+.btn.primary:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ink)}
+.btn.ghost:hover{background:var(--sky-50)}
+.btn.link{background:none;border:0;padding:10px 6px;color:var(--muted);text-decoration:underline;font-weight:700;font-size:14.5px}
+.btn.sm{padding:6px 14px;font-size:14px;border-width:2px}
+.btn:disabled{opacity:.55;cursor:default;transform:none}
 .invisible{visibility:hidden}
-.err{color:var(--bad);font-size:14.5px;margin:14px 0 0}
+.err{color:var(--bad);font-weight:700;font-size:14.5px;margin:14px 0 0}
 .err:empty{display:none}
-.banner{background:var(--wash);border-radius:12px;padding:12px 14px;font-size:14.5px;margin:0 0 16px}
+.done-box{text-align:center;padding:10px 0 4px}
+.done-box svg{width:120px;height:120px}
+.done-box h2{margin:6px 0 4px}
 
-/* Wall */
-.wall h2,.board h2{font-family:var(--serif);font-weight:400;font-size:1.7rem;line-height:1.1;margin:0}
-.board{margin-bottom:34px}
-.board .sub{color:var(--muted);font-size:14px;margin:4px 0 10px}
-.rows{border-top:1px solid var(--line)}
-.cafe-row{display:grid;grid-template-columns:minmax(0,1fr) auto 4ch 8ch;align-items:center;gap:14px;width:100%;text-align:left;background:none;border:0;border-bottom:1px solid var(--line);padding:12px 6px;cursor:pointer}
-.cafe-row:hover{background:var(--wash)}
-.cafe-row[aria-pressed="true"]{background:var(--wash)}
-.cafe-row .nm{font-family:var(--serif);font-size:1.12rem;min-width:0;overflow-wrap:anywhere;line-height:1.25}
-.cafe-row .nm small{display:block;font-family:var(--sans);font-size:13px;color:var(--muted)}
-.cafe-row .dots{display:flex;gap:4px}
-.avg{font-variant-numeric:tabular-nums;font-weight:700;text-align:right}
-.n{font-size:13px;color:var(--muted);text-align:right}
-@media (max-width:480px){.cafe-row{grid-template-columns:minmax(0,1fr) 4ch 7ch}.cafe-row .dots{display:none}}
+/* ---------- Wall ---------- */
+.wall h2.big,.board h2{font-family:var(--display);font-weight:400;font-size:2rem;line-height:1.1;margin:0}
+.summary{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:20px;align-items:start;margin-bottom:30px}
+@media (max-width:700px){.summary{grid-template-columns:minmax(0,1fr)}}
+.board{background:var(--paper);border:2.5px solid var(--ink);border-radius:22px;box-shadow:5px 5px 0 var(--ink);padding:16px 16px 8px}
+.board .sub{color:var(--muted);font-size:14.5px;margin:2px 0 10px}
+.cafe-row{display:grid;grid-template-columns:30px minmax(0,1fr) auto auto;align-items:center;gap:12px;width:100%;text-align:left;background:none;border:0;border-top:2px dashed var(--hair);padding:10px 4px;cursor:pointer;border-radius:12px}
+.cafe-row:hover{background:var(--sky)}
+.cafe-row[aria-pressed="true"]{background:var(--butter-50)}
+.rank{width:28px;height:28px;border-radius:50%;border:2px solid var(--ink);display:grid;place-items:center;font-weight:900;font-size:13px;background:var(--paper)}
+.r1 .rank{background:var(--butter)} .r2 .rank{background:#E3E7EE} .r3 .rank{background:var(--peach)}
+.cafe-row .nm{font-weight:800;font-size:1.05rem;min-width:0;overflow-wrap:anywhere;line-height:1.25}
+.cafe-row .nm small{display:block;font-weight:600;font-size:13px;color:var(--muted)}
+.cafe-row .fl-dots{display:flex;gap:2px}
+.cafe-row .fl-dots .ficon{width:20px;height:20px}
+.score{font-weight:900;font-variant-numeric:tabular-nums;text-align:right;white-space:nowrap}
+.score small{display:block;font-weight:600;font-size:12px;color:var(--muted)}
+@media (max-width:440px){.cafe-row .fl-dots{display:none}.cafe-row{grid-template-columns:30px minmax(0,1fr) auto}}
 
-.wallhead{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px;margin-bottom:16px}
+.ringbox{background:var(--paper);border:2.5px solid var(--ink);border-radius:22px;box-shadow:5px 5px 0 var(--ink);padding:16px;display:flex;gap:14px;align-items:center}
+.ringbox svg.ring{width:120px;height:120px;flex:none}
+.ringbox h3{font-weight:900;font-size:1.05rem;margin:0 0 6px}
+.legend{list-style:none;margin:0;padding:0;display:grid;gap:4px;font-size:14px;font-weight:700}
+.legend li{display:flex;align-items:center;gap:6px;white-space:nowrap}
+.legend .ficon{width:18px;height:18px}
+.legend .n{color:var(--muted);font-variant-numeric:tabular-nums}
+.legend .empty-l{font-weight:600;color:var(--muted);white-space:normal;max-width:18ch}
+
+.wallhead{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px;margin-bottom:18px}
 .wallhead .left{display:flex;flex-wrap:wrap;align-items:center;gap:12px}
-.pill{display:inline-flex;align-items:center;gap:4px;font-size:14px;background:var(--wash);border-radius:999px;padding:4px 6px 4px 12px}
-.pill button{background:none;border:0;color:var(--muted);cursor:pointer;text-decoration:underline;font-size:14px;padding:2px 6px}
-.sortbox{display:flex;align-items:center;gap:8px;font-size:14px;color:var(--muted)}
-.sortbox select{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:7px 10px;font-size:14px}
+.fpill{display:inline-flex;align-items:center;gap:4px;font-size:14px;font-weight:700;background:var(--butter);border:2px solid var(--ink);border-radius:999px;padding:3px 6px 3px 12px}
+.fpill button{background:none;border:0;cursor:pointer;text-decoration:underline;font-size:14px;font-weight:700;padding:2px 6px}
+.sortbox{display:flex;align-items:center;gap:8px;font-size:14.5px;font-weight:700}
+.sortbox select{background:var(--paper);border:2px solid var(--ink);border-radius:12px;padding:7px 10px;font-weight:700;font-size:14px}
 
-.feed{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:18px}
-.review{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;display:flex;flex-direction:column;gap:12px;min-width:0}
-.r-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
-.r-head h3{font-family:var(--serif);font-weight:400;font-size:1.35rem;line-height:1.12;margin:0;min-width:0;overflow-wrap:anywhere}
-.r-head .area{display:block;font-family:var(--sans);font-size:13px;color:var(--muted);margin-top:4px}
-.cups{display:flex;gap:1px;flex:none}
-.cups .cup{width:18px;height:18px}
-.verdict{font-size:14px;margin:-6px 0 0;color:var(--muted)}
-.verdict b{color:var(--ink)}
-.shot{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:10px;background:var(--wash);display:block}
-.ordered{margin:0;font-size:15px;display:flex;justify-content:space-between;gap:12px;align-items:baseline}
-.ordered .what{min-width:0;overflow-wrap:anywhere}
-.ordered .lbl{color:var(--muted)}
-.ordered .bill{flex:none;font-variant-numeric:tabular-nums;color:var(--muted)}
-.tasting{background:var(--wash);border-radius:12px;padding:12px 13px;display:grid;gap:9px}
+.feed{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:22px}
+.review{--bg:var(--paper);background:var(--bg);border:2.5px solid var(--ink);border-radius:22px;box-shadow:5px 5px 0 var(--ink);padding:18px;display:flex;flex-direction:column;gap:12px;min-width:0;transform:rotate(var(--tilt,0deg));transition:transform .2s}
+.review:hover{transform:rotate(0deg) translateY(-2px)}
+.review.b0{--bg:var(--paper)} .review.b1{--bg:var(--mint-50)} .review.b2{--bg:var(--pink-50)} .review.b3{--bg:var(--sky-50)} .review.b4{--bg:var(--butter-50)} .review.b5{--bg:var(--lilac-50)}
+.r-head{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+.r-head h3{font-family:var(--display);font-weight:400;font-size:1.45rem;line-height:1.1;margin:0;min-width:0;overflow-wrap:anywhere}
+.r-head .area{display:block;font-family:var(--body);font-size:13.5px;font-weight:700;color:var(--muted);margin-top:4px}
+.stamp{flex:none;text-align:center;background:var(--paper);border:2px solid var(--ink);border-radius:16px;padding:6px 8px 4px;transform:rotate(4deg)}
+.stamp .cups{display:flex;gap:0}
+.stamp .mcup{width:17px;height:17px}
+.stamp .on .pour{transform:scaleY(1)}
+.stamp b{display:block;font-family:var(--hand);font-size:1.15rem;line-height:1;color:var(--berry);margin-top:2px}
+.shot{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:16px;border:2px solid var(--ink);background:var(--paper);display:block}
+.receipt{background:var(--paper);border:2px solid var(--ink);border-radius:12px 12px 4px 4px;padding:10px 12px 12px;position:relative;font-size:15px}
+.receipt::after{content:"";position:absolute;left:-2px;right:-2px;bottom:-9px;height:9px;background:linear-gradient(-45deg, transparent 6px, var(--paper) 0) 0 0/12px 9px, linear-gradient(45deg, transparent 6px, var(--paper) 0) 0 0/12px 9px;}
+.receipt .lbl{display:block;font-weight:800;font-size:13px;color:var(--muted)}
+.receipt .row{display:flex;justify-content:space-between;gap:12px;align-items:baseline}
+.receipt .what{min-width:0;overflow-wrap:anywhere;font-weight:700}
+.receipt .bill{flex:none;font-weight:900;font-variant-numeric:tabular-nums}
+.tasting{display:grid;gap:9px;margin-top:4px}
 .notes{display:flex;flex-wrap:wrap;gap:6px}
-.note{display:inline-flex;align-items:center;gap:6px;font-size:13px;padding:3px 10px 3px 7px;border-radius:999px;background:color-mix(in srgb, var(--c) 16%, var(--card))}
-.note .dot{background:var(--c);width:9px;height:9px}
-.bars{display:grid;grid-template-columns:auto minmax(0,1fr);gap:5px 12px;align-items:center;font-size:13px}
+.note{display:inline-flex;align-items:center;gap:5px;font-size:13.5px;font-weight:800;padding:3px 10px 3px 5px;border-radius:999px;border:2px solid var(--ink);background:var(--paper)}
+.note .ficon{width:18px;height:18px}
+.bars{display:grid;grid-template-columns:auto minmax(0,1fr);gap:6px 12px;align-items:center;font-size:13.5px;font-weight:700}
 .bars .k{color:var(--muted)}
 .segs{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:3px;max-width:150px}
-.segs i{height:6px;border-radius:3px;background:var(--line)}
-.segs i.f{background:var(--ink)}
-.texture{font-size:13px;color:var(--muted)}
-.texture b{color:var(--ink);font-weight:600}
-.fb{margin:0;white-space:pre-wrap;overflow-wrap:anywhere}
+.segs i{height:9px;border-radius:5px;border:1.5px solid var(--ink);background:var(--paper)}
+.segs i.f{background:var(--coffee)}
+.texture{font-size:13.5px;font-weight:700;color:var(--muted)}
+.texture b{color:var(--ink)}
+.fb{margin:0;white-space:pre-wrap;overflow-wrap:anywhere;font-size:15.5px}
 .who{display:flex;flex-wrap:wrap;gap:6px}
-.who span{font-size:12.5px;padding:3px 9px;border-radius:999px;border:1px solid var(--line);color:var(--muted)}
-.who .back-yes{border-color:var(--good);color:var(--good)}
-.who .back-no{border-color:var(--bad);color:var(--bad)}
-.r-foot{display:flex;justify-content:space-between;align-items:center;gap:10px;font-size:14px;color:var(--muted);margin-top:auto}
-.r-foot b{color:var(--ink)}
-.del{background:none;border:0;color:var(--muted);cursor:pointer;text-decoration:underline;font-size:13px;padding:2px}
-.del.arm{color:var(--bad);font-weight:600}
-.empty{border:1px dashed var(--line);border-radius:16px;padding:36px 20px;text-align:center;color:var(--muted)}
-.empty strong{display:block;font-family:var(--serif);font-weight:400;font-size:1.4rem;color:var(--ink);margin-bottom:6px}
+.who span{font-size:12.5px;font-weight:700;padding:3px 10px;border-radius:999px;background:var(--paper);border:1.5px solid var(--hair)}
+.who .back-yes{background:var(--mint);border-color:var(--ink)}
+.who .back-no{background:var(--peach);border-color:var(--ink)}
+.r-foot{display:flex;justify-content:space-between;align-items:center;gap:10px;font-size:14px;margin-top:auto;padding-top:4px;border-top:2px dashed rgba(46,33,27,.15)}
+.r-foot .by{font-family:var(--hand);font-size:1.35rem;line-height:1.1}
+.r-foot .when{color:var(--muted);font-weight:600;font-size:13px}
+.del{background:none;border:0;color:var(--muted);cursor:pointer;text-decoration:underline;font-size:13px;font-weight:700;padding:2px}
+.del.arm{color:var(--bad)}
+.empty{background:var(--paper);border:2.5px dashed var(--ink);border-radius:22px;padding:28px 20px;text-align:center;color:var(--muted);font-weight:600}
+.empty svg{width:110px;height:110px;display:block;margin:0 auto 6px}
+.empty strong{display:block;font-family:var(--display);font-weight:400;font-size:1.6rem;color:var(--ink);margin-bottom:4px}
 
-@media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
+/* Welcome back + cafe hints */
+.welcome{display:flex;align-items:center;justify-content:space-between;gap:10px;background:var(--mint-50);border:2px solid var(--ink);border-radius:14px;padding:8px 12px;margin:0 0 14px;font-weight:700;font-size:14.5px}
+.welcome button{background:none;border:0;text-decoration:underline;cursor:pointer;font-weight:700;font-size:14px;color:var(--muted);padding:2px}
+.intel{display:flex;gap:10px;align-items:flex-start;background:var(--lilac-50);border:2px solid var(--ink);border-radius:14px;padding:10px 12px;margin-top:10px;font-size:14.5px;font-weight:600}
+.intel b{font-weight:900}
+.intel .fl-row{display:inline-flex;gap:2px;vertical-align:middle}
+.intel .ficon{width:20px;height:20px}
+.intel .mcup{width:30px;height:30px;flex:none}
+.remember{font-size:14px;font-weight:700;background:var(--sky-50);border-radius:12px;padding:8px 12px;margin:0 0 14px}
+
+/* Reactions */
+.reacts{display:flex;gap:6px;flex-wrap:wrap}
+.react{display:inline-flex;align-items:center;gap:5px;background:var(--paper);border:2px solid var(--ink);border-radius:999px;padding:4px 10px;font-weight:800;font-size:13px;cursor:pointer;transition:transform .1s, background .12s}
+.react svg{width:16px;height:16px}
+.react:hover{transform:translateY(-1px)}
+.react.on{background:var(--butter);box-shadow:2px 2px 0 var(--ink)}
+.react .ct{font-variant-numeric:tabular-nums}
+.react.bump{animation:bump .35s ease}
+@keyframes bump{40%{transform:scale(1.18)}}
+
+/* Passport */
+.passport{background:var(--paper);border:2.5px solid var(--ink);border-radius:22px;box-shadow:5px 5px 0 var(--ink);padding:16px 16px 18px;margin-bottom:26px}
+.passport .top{display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap}
+.passport h2{font-family:var(--display);font-weight:400;font-size:1.6rem;margin:0}
+.passport .count{font-weight:800;color:var(--muted);font-size:14px}
+.passport .sub{color:var(--muted);font-size:14.5px;margin:2px 0 12px}
+.stamps{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px 8px}
+@media (max-width:520px){.stamps{grid-template-columns:repeat(4,minmax(0,1fr))}}
+.stampx{display:flex;flex-direction:column;align-items:center;text-align:center;gap:4px;min-width:0}
+.stampx .disc{width:58px;height:58px;border-radius:50%;border:2.5px solid var(--ink);display:grid;place-items:center;background:var(--c);transform:rotate(var(--r,0deg));position:relative}
+.stampx .disc::after{content:"";position:absolute;inset:4px;border-radius:50%;border:1.5px dashed rgba(46,33,27,.45)}
+.stampx .disc svg{width:28px;height:28px}
+.stampx b{font-size:12.5px;font-weight:800;line-height:1.15}
+.stampx small{font-size:11.5px;color:var(--muted);font-weight:600;line-height:1.2}
+.stampx.locked .disc{background:#EEF2F8;border-style:dashed;border-color:#9AA6B8}
+.stampx.locked .disc svg{opacity:.3}
+.stampx.locked b{color:var(--muted)}
+.prog{width:46px;height:5px;border-radius:3px;background:var(--hair);overflow:hidden}
+.prog i{display:block;height:100%;background:var(--coffee)}
+.stampx.fresh .disc{animation:stampin .6s cubic-bezier(.3,1.6,.5,1) both}
+@keyframes stampin{0%{transform:scale(2.2) rotate(-25deg);opacity:0}100%{transform:scale(1) rotate(var(--r,0deg));opacity:1}}
+.unlocked{margin:12px auto 4px;max-width:340px}
+.unlocked .stamps{grid-template-columns:repeat(auto-fit,minmax(80px,1fr))}
+.twin{background:var(--pink-50);border:2px solid var(--ink);border-radius:14px;padding:10px 12px;font-weight:700;font-size:14.5px;margin:12px auto 14px;max-width:360px;text-align:left}
+
+/* Bean confetti */
+.bean{position:fixed;top:-20px;width:12px;height:16px;border-radius:50%;background:var(--coffee);border:1.5px solid var(--ink);z-index:50;pointer-events:none;animation:fall linear forwards}
+.bean::after{content:"";position:absolute;left:50%;top:2px;bottom:2px;width:1.5px;margin-left:-.75px;background:var(--crema);border-radius:2px;transform:rotate(12deg)}
+@keyframes fall{to{transform:translateY(105vh) rotate(var(--spin));}}
+
+@media (prefers-reduced-motion: reduce){
+  *{transition:none!important;animation:none!important}
+  .bean{display:none}
+}
 </style>
 </head>
 <body>
@@ -213,43 +302,78 @@ legend{font-weight:600;font-size:15px;margin:0 0 9px;padding:0}
   <header class="mast">
     <div>
       <h1>Cup Notes</h1>
-      <p class="lede">Our cafe log. Say where you went and what you ordered, taste it properly, then rate it for everyone else.</p>
-    </div>
-    <div class="palate" aria-live="polite">
-      <svg id="ring" viewBox="0 0 100 100" role="img" aria-label="Flavour notes so far"></svg>
-      <div>
-        <p class="cap" id="ringCap">Flavours we've tasted</p>
-        <ul class="legend" id="legend"></ul>
+      <p class="lede">Our cafe diary. Tell us where you went, what you ordered and how it tasted, then see what everyone else thought.</p>
+      <div class="pills">
+        <span class="pill-stat"><b id="sReviews">0</b> reviews</span>
+        <span class="pill-stat"><b id="sCafes">0</b> cafes</span>
+        <span class="pill-stat"><b id="sAvg">–</b> avg cups</span>
       </div>
     </div>
+    <svg class="mascot" viewBox="0 0 160 160" aria-hidden="true">
+      <ellipse cx="80" cy="140" rx="58" ry="10" fill="#D7E3F7"/>
+      <g class="steam" fill="none" stroke="#2E211B" stroke-width="4" stroke-linecap="round">
+        <path d="M58 40c-8-8 8-14 0-24"/><path d="M80 36c-8-8 8-14 0-24"/><path d="M102 40c-8-8 8-14 0-24"/>
+      </g>
+      <ellipse cx="80" cy="128" rx="56" ry="12" fill="#9FD0FF" stroke="#2E211B" stroke-width="4"/>
+      <path d="M118 70h8a18 18 0 0 1 0 36h-10" fill="none" stroke="#2E211B" stroke-width="7" stroke-linecap="round"/>
+      <path d="M118 70h8a18 18 0 0 1 0 36h-10" fill="none" stroke="#FFD66B" stroke-width="3" stroke-linecap="round"/>
+      <path d="M34 56h92v34a38 38 0 0 1-38 38h-16a38 38 0 0 1-38-38z" fill="#FFFFFF" stroke="#2E211B" stroke-width="4" stroke-linejoin="round"/>
+      <path d="M34 56h92" stroke="#2E211B" stroke-width="4"/>
+      <ellipse cx="80" cy="56" rx="46" ry="8" fill="#9A5B33" stroke="#2E211B" stroke-width="4"/>
+      <ellipse cx="72" cy="55" rx="14" ry="3" fill="#E7B98A"/>
+      <circle cx="64" cy="88" r="5" fill="#2E211B"/><circle cx="96" cy="88" r="5" fill="#2E211B"/>
+      <circle cx="66" cy="86" r="1.6" fill="#fff"/><circle cx="98" cy="86" r="1.6" fill="#fff"/>
+      <path d="M70 100c6 7 14 7 20 0" fill="none" stroke="#2E211B" stroke-width="4" stroke-linecap="round"/>
+      <ellipse cx="52" cy="100" rx="7" ry="4.5" fill="#F2547D" opacity=".55"/><ellipse cx="108" cy="100" rx="7" ry="4.5" fill="#F2547D" opacity=".55"/>
+    </svg>
   </header>
 
   <div class="layout">
     <section class="composer" aria-label="Write a review">
-      <ol class="progress" id="prog"></ol>
-      <p class="banner" id="setupNote" hidden></p>
+      <div class="meter" id="meter">
+        <svg viewBox="0 0 64 64" aria-hidden="true">
+          <defs><clipPath id="cupIn"><path d="M12 16h36v22a14 14 0 0 1-14 14h-8a14 14 0 0 1-14-14z"/></clipPath></defs>
+          <g clip-path="url(#cupIn)"><rect class="liquid" id="liquid" x="10" y="14" width="40" height="40" fill="#9A5B33"/></g>
+          <path d="M12 16h36v22a14 14 0 0 1-14 14h-8a14 14 0 0 1-14-14z" fill="none" stroke="#2E211B" stroke-width="3" stroke-linejoin="round"/>
+          <path d="M48 22h3a8 8 0 0 1 0 16h-4" fill="none" stroke="#2E211B" stroke-width="3" stroke-linecap="round"/>
+          <path d="M6 58h48" stroke="#2E211B" stroke-width="3" stroke-linecap="round"/>
+        </svg>
+        <div>
+          <div class="txt" id="meterTxt">Step 1 of 6<span>Your name</span></div>
+          <div class="dots" id="dots"></div>
+        </div>
+      </div>
+
+      <div class="welcome" id="welcome" hidden><span id="welcomeTxt"></span><button type="button" id="notMe">Not you?</button></div>
 
       <form id="f" novalidate autocomplete="off">
         <div class="step" data-step="0">
-          <h2>Who's reviewing?</h2>
-          <p class="hint">Your name goes on your review.</p>
+          <div class="step-top">
+            <svg viewBox="0 0 64 64" aria-hidden="true"><rect x="6" y="14" width="52" height="38" rx="9" fill="#FFE6EE" stroke="#2E211B" stroke-width="3"/><path d="M6 23a9 9 0 0 1 9-9h34a9 9 0 0 1 9 9v5H6z" fill="#F2547D" stroke="#2E211B" stroke-width="3" stroke-linejoin="round"/><path d="M16 42c4-6 7 2 11-3s8 2 12-2 6 0 9-1" fill="none" stroke="#2E211B" stroke-width="3" stroke-linecap="round"/></svg>
+            <h2>Who's sipping today?</h2>
+          </div>
+          <p class="hint">Your name goes on your review so friends know who to blame.</p>
           <label class="fl" for="name">Your name</label>
           <input class="field" id="name" type="text" maxlength="40" placeholder="e.g. Riya">
         </div>
 
         <div class="step" data-step="1" hidden>
-          <h2>Which cafe are you at?</h2>
-          <p class="hint">If a friend already reviewed it, pick it from the suggestions so the ratings add up in one place.</p>
+          <div class="step-top">
+            <svg viewBox="0 0 64 64" aria-hidden="true"><rect x="10" y="26" width="44" height="30" fill="#fff" stroke="#2E211B" stroke-width="3"/><path d="M6 27l5-14h42l5 14z" fill="#9FD0FF" stroke="#2E211B" stroke-width="3" stroke-linejoin="round"/><path d="M20 13l-3 14M32 13v14M44 13l3 14" stroke="#2E211B" stroke-width="3"/><path d="M6 27a6.5 5 0 0 0 13 0 6.5 5 0 0 0 13 0 6.5 5 0 0 0 13 0 6.5 5 0 0 0 13 0" fill="#FFD66B" stroke="#2E211B" stroke-width="3"/><rect x="28" y="38" width="10" height="18" fill="#FFB197" stroke="#2E211B" stroke-width="3"/><rect x="14" y="36" width="10" height="9" fill="#DDF6EC" stroke="#2E211B" stroke-width="2.5"/><rect x="42" y="36" width="8" height="9" fill="#DDF6EC" stroke="#2E211B" stroke-width="2.5"/></svg>
+            <h2>Where are you sipping?</h2>
+          </div>
+          <p class="hint">If a friend already reviewed this cafe, pick it from the suggestions so the ratings add up.</p>
           <label class="fl" for="cafe">Cafe name</label>
           <input class="field" id="cafe" type="text" list="cafelist" maxlength="60" placeholder="e.g. The Daily Grind">
           <datalist id="cafelist"></datalist>
+          <div class="intel" id="intel" hidden aria-live="polite"></div>
           <label class="fl" for="area">Area <span class="opt">(optional)</span></label>
           <input class="field" id="area" type="text" maxlength="40" placeholder="e.g. near the market">
           <span class="fl">Photo <span class="opt">(optional)</span></span>
           <input id="photo" type="file" accept="image/jpeg,image/png,image/webp" class="sr">
           <label class="photo-btn" for="photo">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg>
-            Add a photo of the cafe or your cup
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg>
+            Snap the cafe or your cup
           </label>
           <div class="prev" id="photoPrev" hidden>
             <img id="photoImg" alt="Photo you picked">
@@ -258,63 +382,81 @@ legend{font-weight:600;font-size:15px;margin:0 0 9px;padding:0}
         </div>
 
         <div class="step" data-step="2" hidden>
-          <h2>What's your palate like?</h2>
+          <div class="step-top">
+            <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M12 22h36v16a16 16 0 0 1-16 16h-4a16 16 0 0 1-16-16z" fill="#FFE6EE" stroke="#2E211B" stroke-width="3" stroke-linejoin="round"/><path d="M48 27h3a7 7 0 0 1 0 14h-4" fill="none" stroke="#2E211B" stroke-width="3" stroke-linecap="round"/><path d="M30 46c-9-6-12-10-12-14a5 5 0 0 1 9-3l3 3 3-3a5 5 0 0 1 9 3c0 4-3 8-12 14z" fill="#F2547D" stroke="#2E211B" stroke-width="2.5" stroke-linejoin="round"/><path d="M24 8c-4 4 4 6 0 10M34 6c-4 4 4 6 0 10" fill="none" stroke="#2E211B" stroke-width="2.5" stroke-linecap="round"/></svg>
+            <h2>What's your coffee personality?</h2>
+          </div>
           <p class="hint">Three quick picks, so others can read your review in context.</p>
+          <p class="remember" id="remember" hidden>We kept your answers from last time. Change anything that's different today.</p>
           <div id="palateQs"></div>
         </div>
 
         <div class="step" data-step="3" hidden>
-          <h2>What did you order?</h2>
-          <p class="hint">Drinks, food, everything that came to the table.</p>
+          <div class="step-top">
+            <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M14 6h36v50l-6-4-6 4-6-4-6 4-6-4-6 4z" fill="#FFF4D1" stroke="#2E211B" stroke-width="3" stroke-linejoin="round"/><path d="M21 17h22M21 26h22M21 35h14" stroke="#2E211B" stroke-width="3" stroke-linecap="round"/><circle cx="42" cy="36" r="3" fill="#F2547D"/></svg>
+            <h2>What did you order?</h2>
+          </div>
+          <p class="hint">Drinks, snacks, everything that landed on the table.</p>
           <label class="fl" for="order">Your order</label>
-          <textarea class="field" id="order" maxlength="400" placeholder="e.g. Pour-over of the Chikmagalur natural, almond croissant"></textarea>
+          <textarea class="field" id="order" maxlength="400" placeholder="e.g. Iced pour-over of the Chikmagalur natural, almond croissant"></textarea>
           <label class="fl" for="bill">Bill in ₹ <span class="opt">(optional)</span></label>
           <input class="field" id="bill" type="number" inputmode="numeric" min="0" step="1" placeholder="e.g. 450">
         </div>
 
         <div class="step" data-step="4" hidden>
-          <h2>Taste your coffee</h2>
-          <p class="hint">Smell it first. Then take a loud slurp: it sprays coffee across your tongue and carries the aroma up to your nose, which is where most of the flavour is.</p>
+          <div class="step-top">
+            <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M10 26h36v14a16 16 0 0 1-16 16h-4a16 16 0 0 1-16-16z" fill="#DDF6EC" stroke="#2E211B" stroke-width="3" stroke-linejoin="round"/><ellipse cx="28" cy="26" rx="18" ry="4" fill="#9A5B33" stroke="#2E211B" stroke-width="3"/><path d="M46 31h3a7 7 0 0 1 0 14h-4" fill="none" stroke="#2E211B" stroke-width="3" stroke-linecap="round"/><path d="M20 18c-4-4 4-6 0-11M30 17c-4-4 4-6 0-11" fill="none" stroke="#2E211B" stroke-width="2.5" stroke-linecap="round"/><path d="M50 8l2 5 5 2-5 2-2 5-2-5-5-2 5-2z" fill="#FFD66B" stroke="#2E211B" stroke-width="2" stroke-linejoin="round"/></svg>
+            <h2>Now taste it like a pro</h2>
+          </div>
+          <p class="hint">Smell it first. Then take a big, loud slurp: it sprays coffee across your tongue and pushes the aroma up to your nose, where most of the flavour lives.</p>
           <fieldset>
-            <legend>Which flavours do you notice? <span class="opt">Pick up to 3</span></legend>
+            <legend>Which flavours pop out? <span class="opt">Pick up to 3</span></legend>
             <div class="wheel" id="wheel"></div>
           </fieldset>
-          <p class="tip"><b>Start broad.</b> "Fruity" is a perfectly good answer. Only get specific when a note is obvious.</p>
+          <p class="tip">Start broad. "Fruity" is a great answer. Only get specific when it's obvious.</p>
           <div id="scales"></div>
-          <p class="tip"><b>Sour or bitter?</b> Swallow, tilt your head down and open your mouth slightly. If your mouth waters, that's acidity.</p>
+          <p class="tip">Sour or bitter? Swallow, tilt your head down and open your mouth a little. If it waters, that's acidity.</p>
           <fieldset>
             <legend>How does it feel in your mouth?</legend>
             <div class="chips" id="textures"></div>
           </fieldset>
-          <p class="tip"><b>Sip again in a few minutes.</b> Coffee changes as it cools, and most cups taste clearer once they're just warm.</p>
+          <p class="tip">Sip again in a few minutes. Most coffees taste clearer once they cool down a bit.</p>
         </div>
 
         <div class="step" data-step="5" hidden>
-          <h2>Your verdict</h2>
+          <div class="step-top">
+            <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M18 8h28v14a14 14 0 0 1-28 0z" fill="#FFD66B" stroke="#2E211B" stroke-width="3" stroke-linejoin="round"/><path d="M18 12h-6a6 6 0 0 0 6 10M46 12h6a6 6 0 0 1-6 10" fill="none" stroke="#2E211B" stroke-width="3" stroke-linecap="round"/><path d="M32 36v10M22 56h20l-3-10H25z" fill="#FFB197" stroke="#2E211B" stroke-width="3" stroke-linejoin="round"/><path d="M32 13l2 4 4 .6-3 3 .7 4.4-3.7-2-3.7 2 .7-4.4-3-3 4-.6z" fill="#fff" stroke="#2E211B" stroke-width="1.8" stroke-linejoin="round"/></svg>
+            <h2>So… how was it?</h2>
+          </div>
           <fieldset>
-            <legend>Overall rating</legend>
+            <legend>Pour your rating</legend>
             <div class="rate" id="rate"></div>
-            <p class="ratelbl" id="ratelbl">Tap a cup</p>
+            <p class="ratelbl" id="ratelbl">Tap a cup to fill it</p>
           </fieldset>
           <fieldset>
             <legend>Would you come back?</legend>
             <div class="chips" id="revisit"></div>
           </fieldset>
-          <label class="fl" for="feedback">Your feedback</label>
+          <label class="fl" for="feedback">Tell us more</label>
           <textarea class="field" id="feedback" maxlength="1200" placeholder="What stood out? The coffee, the food, service, seating, wifi…"></textarea>
         </div>
 
         <div class="step" data-step="6" hidden>
-          <h2>Posted to the wall</h2>
-          <p class="hint">Everyone with the link can read it now. You can delete it from this phone or laptop later.</p>
-          <button type="button" class="btn primary" id="again">Review another cafe</button>
+          <div class="done-box">
+            <svg viewBox="0 0 160 160" aria-hidden="true"><circle cx="80" cy="80" r="70" fill="#DDF6EC" stroke="#2E211B" stroke-width="4"/><path d="M44 62h64v24a28 28 0 0 1-28 28h-8a28 28 0 0 1-28-28z" fill="#fff" stroke="#2E211B" stroke-width="4" stroke-linejoin="round"/><path d="M108 70h5a12 12 0 0 1 0 24h-6" fill="none" stroke="#2E211B" stroke-width="4" stroke-linecap="round"/><path d="M60 86l10 10 22-22" fill="none" stroke="#1F8A5B" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <h2>Posted to the wall!</h2>
+            <p class="hint" id="doneHint">Everyone with the link can read it now. You can delete it later from this phone or laptop.</p>
+            <div class="unlocked" id="unlocked" hidden></div>
+            <div class="twin" id="twin" hidden></div>
+            <button type="button" class="btn primary" id="again">Review another cafe</button>
+          </div>
         </div>
 
         <p class="err" id="err" role="alert"></p>
         <div class="nav" id="nav">
           <button type="button" class="btn ghost invisible" id="back">Back</button>
           <div class="right">
-            <button type="button" class="btn link" id="skip" hidden>Skip, didn't have coffee</button>
+            <button type="button" class="btn link" id="skip" hidden>Skip, no coffee today</button>
             <button type="submit" class="btn primary" id="next">Next</button>
           </div>
         </div>
@@ -322,16 +464,30 @@ legend{font-weight:600;font-size:15px;margin:0 0 9px;padding:0}
     </section>
 
     <section class="wall" aria-label="Reviews">
-      <div class="board" id="board" hidden>
-        <h2>Cafes so far</h2>
-        <p class="sub">Ranked by average cups. Tap one to see only its reviews.</p>
-        <div class="rows" id="rows"></div>
+      <div class="passport" id="passport" hidden>
+        <div class="top"><h2 id="ppTitle">Your cup passport</h2><span class="count" id="ppCount"></span></div>
+        <p class="sub">Stamps for exploring: new cafes, new flavours, photos and helpful reviews.</p>
+        <div class="stamps" id="stamps"></div>
+      </div>
+      <div class="summary" id="summary" hidden>
+        <div class="board">
+          <h2>Cafes so far</h2>
+          <p class="sub">Ranked by average cups. Tap a cafe to see only its reviews.</p>
+          <div id="rows"></div>
+        </div>
+        <div class="ringbox">
+          <svg class="ring" id="ring" viewBox="0 0 100 100" role="img" aria-label="Flavour notes so far"></svg>
+          <div>
+            <h3>Our taste ring</h3>
+            <ul class="legend" id="legend"></ul>
+          </div>
+        </div>
       </div>
 
       <div class="wallhead">
         <div class="left">
-          <h2>The wall</h2>
-          <span class="pill" id="fpill" hidden><span id="ftext"></span><button type="button" id="fclear">Show all</button></span>
+          <h2 class="big">The wall</h2>
+          <span class="fpill" id="fpill" hidden><span id="ftext"></span><button type="button" id="fclear">Show all</button></span>
         </div>
         <label class="sortbox" for="sort">Sort
           <select id="sort">
@@ -353,89 +509,139 @@ legend{font-weight:600;font-size:15px;margin:0 0 9px;padding:0}
   const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVnempwZGdsaHN0eXlub3h1b3FrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTIwNTI0NzAsImV4cCI6MjEwNzYyODQ3MH0.l2o4sWQ-2ROke_fSBlTdUl4k65ZVIsXFa2USu-IRhkw";
   const BUCKET = "cafe-photos";
   const COLS = "id,created_at,name,cafe,cafe_key,area,coffee,purpose,palate,order_text,bill,rating,revisit,feedback,photo_path,tasting";
+  const COLS_R = COLS + ",helpful_count,want_count"; // reaction counters; the app falls back to COLS if they don't exist yet
 
   const $ = s => document.querySelector(s);
   const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
   const keyOf = s => String(s || "").trim().toLowerCase().replace(/\s+/g, " ");
   const clampR = n => Math.min(5, Math.max(1, Math.round(Number(n) || 0)));
+  const hash = s => { let h = 0; for (const ch of String(s)) h = (h * 31 + ch.charCodeAt(0)) | 0; return Math.abs(h); };
   const uuid = () => (window.crypto && crypto.randomUUID) ? crypto.randomUUID() :
     "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, c => { const r = Math.random() * 16 | 0; return (c === "x" ? r : (r & 3 | 8)).toString(16); });
   const store = {
     get(k, d) { try { const v = localStorage.getItem(k); return v ? JSON.parse(v) : d; } catch (e) { return d; } },
     set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} }
   };
+  const reduceMotion = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  // ---------- Vocabulary (flavour families follow the SCA / World Coffee Research Coffee Taster's Flavor Wheel) ----------
-  const STEPS = ["You", "Cafe", "Palate", "Order", "Taste", "Verdict"];
+  // ---------- Flavour families (SCA / World Coffee Research Coffee Taster's Flavor Wheel) with sticker icons ----------
+  const INK = "#2E211B";
+  const ICON = {
+    floral: c => '<g fill="' + c + '" stroke="' + INK + '" stroke-width="1.3"><circle cx="12" cy="6.5" r="3.8"/><circle cx="17.5" cy="10.8" r="3.8"/><circle cx="15.3" cy="17.3" r="3.8"/><circle cx="8.7" cy="17.3" r="3.8"/><circle cx="6.5" cy="10.8" r="3.8"/></g><circle cx="12" cy="12.6" r="3" fill="#FFD66B" stroke="' + INK + '" stroke-width="1.3"/>',
+    fruity: c => '<path d="M8 14C9 9 12 6 17 3.5M16 14c-.5-4-1.5-7.5 1-10.5" stroke="#3A7D44" stroke-width="1.7" fill="none" stroke-linecap="round"/><circle cx="7.5" cy="17" r="4.3" fill="' + c + '" stroke="' + INK + '" stroke-width="1.3"/><circle cx="16.5" cy="17" r="4.3" fill="' + c + '" stroke="' + INK + '" stroke-width="1.3"/>',
+    citrus: c => '<circle cx="12" cy="12" r="9.3" fill="' + c + '" stroke="' + INK + '" stroke-width="1.3"/><circle cx="12" cy="12" r="6.6" fill="#FFF6B8"/><path d="M12 5.6v12.8M5.6 12h12.8M7.5 7.5l9 9M16.5 7.5l-9 9" stroke="' + c + '" stroke-width="1.3"/>',
+    fermented: c => '<g fill="' + c + '" stroke="' + INK + '" stroke-width="1.1"><circle cx="9" cy="9" r="3"/><circle cx="15" cy="9" r="3"/><circle cx="6.3" cy="13.6" r="2.7"/><circle cx="12" cy="13.2" r="3"/><circle cx="17.7" cy="13.6" r="2.7"/><circle cx="9" cy="17.8" r="2.8"/><circle cx="15" cy="17.8" r="2.8"/><circle cx="12" cy="21.3" r="2.3"/></g><path d="M12 6V2.3M12 4c2-2 4-2 5.5-1" stroke="#3A7D44" stroke-width="1.7" fill="none" stroke-linecap="round"/>',
+    green: c => '<path d="M4 20C4 10 10 4 20.5 3.5 20.5 14 14 20 4 20z" fill="' + c + '" stroke="' + INK + '" stroke-width="1.3" stroke-linejoin="round"/><path d="M4.5 19.5L15 9" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/>',
+    roasted: c => '<path d="M12 2c1 4 6.5 6 6.5 12.5a6.5 6.5 0 0 1-13 0c0-3.3 2-5.5 3.2-6.5 0 2 1 3.2 2.2 3.2C11 7 10 5 12 2z" fill="' + c + '" stroke="' + INK + '" stroke-width="1.3" stroke-linejoin="round"/><path d="M12 13c1.2 2.2 3 3 3 5.2a3 3 0 0 1-6 0c0-2.2 1.8-3 3-5.2z" fill="#FFD66B"/>',
+    spices: c => '<path d="M4.5 19.5c6.5 1.2 12.8-3.2 14.8-10.3.5-1.6-1.6-2.7-2.7-1.4-3.8 4.6-8 7.6-12.3 8.7-1.7.5-1.6 2.7.2 3z" fill="' + c + '" stroke="' + INK + '" stroke-width="1.3" stroke-linejoin="round"/><path d="M17.3 7.3c0-2.2 1.2-3.4 3.3-3.4" stroke="#3A7D44" stroke-width="1.9" fill="none" stroke-linecap="round"/>',
+    nutty: c => '<path d="M12 3c4.5 3 7 7.5 7 11.5a7 7 0 0 1-14 0C5 10.5 7.5 6 12 3z" fill="' + c + '" stroke="' + INK + '" stroke-width="1.3" stroke-linejoin="round"/><path d="M9 11c.8 3 1 6 0 8.5M13 9c1 3.5 1.2 7 .2 10.5" stroke="#fff" stroke-opacity=".55" stroke-width="1.3" fill="none" stroke-linecap="round"/>',
+    sweet: c => '<path d="M12 2.5c3.2 5.2 6.5 8.2 6.5 12.4a6.5 6.5 0 0 1-13 0c0-4.2 3.3-7.2 6.5-12.4z" fill="' + c + '" stroke="' + INK + '" stroke-width="1.3" stroke-linejoin="round"/><path d="M9.2 15.2a2.8 2.8 0 0 0 2.8 2.8" stroke="#fff" stroke-width="1.7" fill="none" stroke-linecap="round"/>'
+  };
   const FAMILIES = [
-    ["floral", "Floral", "Jasmine, rose, chamomile"],
-    ["fruity", "Fruity", "Berries, stone fruit, raisin"],
-    ["citrus", "Citrus", "Orange, lemon, lime"],
-    ["fermented", "Winey", "Wine, boozy, very ripe"],
-    ["green", "Green, herbal", "Grassy, herbal, fresh"],
-    ["roasted", "Roasted", "Toast, smoke, cereal"],
-    ["spices", "Spicy", "Cardamom, clove, pepper"],
-    ["nutty", "Nutty, cocoa", "Almond, hazelnut, chocolate"],
-    ["sweet", "Sweet", "Caramel, honey, jaggery"]
+    ["floral", "Floral", "Jasmine, rose", "#F28BC7", "#FFE6F3"],
+    ["fruity", "Fruity", "Berries, cherry", "#EE4F6E", "#FFE3E8"],
+    ["citrus", "Citrus", "Orange, lemon", "#F7BD1E", "#FFF4D1"],
+    ["fermented", "Winey", "Wine, boozy", "#9B6BD6", "#EEE8FF"],
+    ["green", "Herbal", "Grassy, fresh", "#57C27A", "#DDF6EC"],
+    ["roasted", "Roasty", "Toast, smoke", "#F07A3C", "#FFE9E0"],
+    ["spices", "Spicy", "Cardamom, clove", "#D8402E", "#FFE4DF"],
+    ["nutty", "Nutty, cocoa", "Almond, choc", "#A86B3C", "#F3E6DA"],
+    ["sweet", "Sweet", "Caramel, jaggery", "#F2A93B", "#FFF0D6"]
   ];
   const FAM = Object.fromEntries(FAMILIES.map(f => [f[0], f]));
+  const ficon = (k, cls) => '<svg class="ficon' + (cls ? " " + cls : "") + '" viewBox="0 0 24 24" aria-hidden="true">' + ICON[k](FAM[k][3]) + '</svg>';
+
+  const STEPS = ["Your name", "The cafe", "Your coffee personality", "Your order", "Tasting", "The verdict"];
   const SCALES = [
     ["acidity", "Acidity", "Flat", "Bright, juicy"],
-    ["sweetness", "Sweetness", "Dry", "Very sweet"],
-    ["body", "Body", "Light, like tea", "Heavy, like syrup"],
+    ["sweetness", "Sweetness", "Dry", "Super sweet"],
+    ["body", "Body", "Light, like tea", "Thick, like syrup"],
     ["finish", "Finish", "Gone quickly", "Lingers"]
   ];
   const TEXTURES = [["silky", "Silky"], ["syrupy", "Syrupy"], ["creamy", "Creamy"], ["thin", "Thin, watery"], ["drying", "Drying"]];
   const TEXTURE = Object.fromEntries(TEXTURES);
   const PALATE_QS = [
-    { id: "coffee", q: "How do you usually take your coffee?", opts: [
+    { id: "coffee", q: "How do you usually take your coffee?", cls: "c-mint", opts: [
       ["black", "Black", "espresso, pour-over", "Drinks it black"],
       ["milky", "With milk", "latte, cappuccino", "Takes milk"],
       ["iced", "Iced", "cold brew, iced latte", "Iced fan"],
       ["filter", "Filter kaapi", "", "Filter kaapi fan"],
       ["tea", "Tea, not coffee", "", "Tea person"]]},
-    { id: "palate", q: "What do you usually like in a cup?", opts: [
-      ["bright", "Bright and fruity", "", "Likes bright, fruity cups"],
-      ["chocolatey", "Chocolatey and nutty", "", "Likes chocolatey cups"],
-      ["sweet", "Sweet and caramelly", "", "Likes sweet cups"],
-      ["bold", "Bold and roasty", "", "Likes bold, roasty cups"],
+    { id: "palate", q: "What do you usually love in a cup?", cls: "c-pink", opts: [
+      ["bright", "Bright and fruity", "", "Loves bright, fruity cups"],
+      ["chocolatey", "Chocolatey and nutty", "", "Loves chocolatey cups"],
+      ["sweet", "Sweet and caramelly", "", "Loves sweet cups"],
+      ["bold", "Bold and roasty", "", "Loves bold, roasty cups"],
       ["unsure", "Still figuring it out", "", "Still exploring"]]},
-    { id: "purpose", q: "What brings you here today?", opts: [
+    { id: "purpose", q: "What brings you here today?", cls: "c-lilac", opts: [
       ["work", "Work or study", "", "Here to work"],
       ["catchup", "Catching up", "", "Catching up"],
       ["date", "A date", "", "On a date"],
       ["bite", "A quick bite", "", "Quick bite"]]}
   ];
   const TAG = {}; PALATE_QS.forEach(q => { TAG[q.id] = Object.fromEntries(q.opts.map(o => [o[0], o[3]])); });
-  const RATE = ["", "Never again", "Meh", "Decent", "Really good", "New regular"];
-  const REVISIT = [["yes", "Yes"], ["maybe", "Maybe"], ["no", "No"]];
+  const RATE = ["", "Never again", "Meh", "Decent", "Really good", "New regular!"];
+  const REVISIT = [["yes", "Yes, for sure"], ["maybe", "Maybe"], ["no", "Nope"]];
   const BACK = { yes: ["Coming back", "back-yes"], maybe: ["Might come back", ""], no: ["Not coming back", "back-no"] };
 
-  const CUP = '<svg class="cup" viewBox="0 0 24 24" aria-hidden="true"><path class="s" d="M8 2.8c-.8 1 .8 1.8 0 2.9M11.5 2.8c-.8 1 .8 1.8 0 2.9"/><path class="b" d="M3.5 8.5h13v4.2a5 5 0 0 1-5 5h-3a5 5 0 0 1-5-5z"/><path class="h" d="M16.5 10h1.3a2.3 2.3 0 0 1 0 4.6h-1.6M3 21h15"/></svg>';
-  const cups = n => '<span class="cups" role="img" aria-label="' + n + ' out of 5 cups">' + [1,2,3,4,5].map(i => '<span class="' + (i <= n ? "on" : "") + '">' + CUP + '</span>').join("") + '</span>';
-  const famColor = k => "var(--f-" + k + ")";
+  const MCUP = '<svg class="mcup" viewBox="0 0 32 32" aria-hidden="true"><defs></defs><path class="pour" d="M7 12h16v6.5a6.5 6.5 0 0 1-6.5 6.5h-3A6.5 6.5 0 0 1 7 18.5z" fill="#9A5B33"/><path d="M6 10h18v8.5a7.5 7.5 0 0 1-7.5 7.5h-3A7.5 7.5 0 0 1 6 18.5z" fill="none" stroke="#2E211B" stroke-width="2.2" stroke-linejoin="round"/><path d="M24 13h1.5a3.5 3.5 0 0 1 0 7H23.5" fill="none" stroke="#2E211B" stroke-width="2.2" stroke-linecap="round"/><path d="M11 6.5c-1-1.2 1-2 0-3.5M16 6.5c-1-1.2 1-2 0-3.5" fill="none" stroke="#2E211B" stroke-width="1.6" stroke-linecap="round" opacity=".6"/></svg>';
+  const cups = n => '<span class="cups" role="img" aria-label="' + n + ' out of 5 cups">' + [1,2,3,4,5].map(i => '<span class="' + (i <= n ? "on" : "") + '">' + MCUP + '</span>').join("") + '</span>';
+
+  // ---------- Small icons ----------
+  const svg24 = (inner, extra) => '<svg viewBox="0 0 24 24" fill="none" stroke="#2E211B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"' + (extra || "") + '>' + inner + '</svg>';
+  const I_THUMB = svg24('<path d="M7 11v9H4v-9z"/><path d="M7 11l4-7a2 2 0 0 1 3.2 2.1L13 10h6a2 2 0 0 1 2 2.3l-1.3 6A2.2 2.2 0 0 1 17.6 20H7"/>');
+  const I_PIN = svg24('<path d="M12 21s7-6.2 7-11.5A7 7 0 0 0 5 9.5C5 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/>');
+  const BADGE_ICON = {
+    first: svg24('<path d="M5 8h12v5a5 5 0 0 1-5 5h-2a5 5 0 0 1-5-5z" fill="#fff"/><path d="M17 10h1.5a2.5 2.5 0 0 1 0 5H17M9 2.5c-.8 1 .8 1.6 0 3M13 2.5c-.8 1 .8 1.6 0 3"/>'),
+    hopper: svg24('<path d="M4 10h16v10H4z" fill="#fff"/><path d="M3 10l2-5h14l2 5M10 20v-5h4v5"/>'),
+    explorer: svg24('<circle cx="12" cy="12" r="9" fill="#fff"/><path d="M15.5 8.5l-2 5-5 2 2-5z" fill="#F2547D"/>'),
+    hunter: svg24('<circle cx="10.5" cy="10.5" r="6" fill="#fff"/><path d="M15 15l5 5"/>'),
+    wheel: svg24('<circle cx="12" cy="12" r="8.5" fill="#fff"/><path d="M12 3.5v17M3.5 12h17M6 6l12 12M18 6L6 18"/>'),
+    shutter: svg24('<path d="M4 8h3l2-3h6l2 3h3v11H4z" fill="#fff"/><circle cx="12" cy="13" r="3.5"/>'),
+    story: svg24('<path d="M4 20l1-4L16 5l3 3L8 19z" fill="#fff"/><path d="M14 7l3 3"/>'),
+    regular: svg24('<path d="M12 20s-8-4.6-8-10a4.5 4.5 0 0 1 8-2.8A4.5 4.5 0 0 1 20 10c0 5.4-8 10-8 10z" fill="#F2547D"/>'),
+    trail: svg24('<path d="M6 21V4"/><path d="M6 4h11l-2 4 2 4H6" fill="#fff"/>'),
+    helpful: I_THUMB
+  };
+  // Stamps reward variety and helpfulness, never volume or streaks.
+  const BADGES = [
+    { id: "first", name: "First sip", how: "Post your first review", c: "#FFD66B", need: 1, v: m => m.n },
+    { id: "hopper", name: "Cafe hopper", how: "Review 3 different cafes", c: "#9FD0FF", need: 3, v: m => m.cafes },
+    { id: "explorer", name: "Explorer", how: "Review 7 different cafes", c: "#7FDCB6", need: 7, v: m => m.cafes },
+    { id: "hunter", name: "Flavour hunter", how: "Taste 5 flavour families", c: "#F28BC7", need: 5, v: m => m.fams },
+    { id: "wheel", name: "Full wheel", how: "Taste all 9 flavour families", c: "#C3B1FF", need: 9, v: m => m.fams },
+    { id: "shutter", name: "Shutterbug", how: "Add photos to 3 reviews", c: "#FFB197", need: 3, v: m => m.photos },
+    { id: "story", name: "Storyteller", how: "Write a review of 150+ letters", c: "#FFF4D1", need: 1, v: m => m.long },
+    { id: "regular", name: "Regular", how: "Review the same cafe twice", c: "#FFE3E8", need: 2, v: m => m.same },
+    { id: "trail", name: "Trailblazer", how: "Be first to review a cafe", c: "#DDF6EC", need: 1, v: m => m.firsts },
+    { id: "helpful", name: "Helpful hand", how: "Get 5 helpful taps", c: "#E1EFFF", need: 5, v: m => m.helpful, react: true }
+  ];
 
   // ---------- State ----------
-  const st = { step: 0, reviews: [], loaded: false, failed: false, filter: null, sort: "new", photo: null, photoURL: null, armed: null, tasting: true };
+  const st = { step: 0, reviews: [], loaded: false, failed: false, filter: null, sort: "new", photo: null, photoURL: null, armed: null, tasting: true, hasReact: true, me: "" };
   const tokens = store.get("cupnotes.tokens", {});
+  const reacted = store.get("cupnotes.reacted", {});
+  let device = store.get("cupnotes.device", "");
+  if (!device) { device = uuid(); store.set("cupnotes.device", device); }
   const sb = (window.supabase && window.supabase.createClient) ? window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY, { auth: { persistSession: false } }) : null;
 
   // ---------- Build the form ----------
   const form = $("#f");
-  const chip = (name, v, label, small) => '<label class="chip"><input type="radio" name="' + name + '" id="' + name + '-' + v + '" value="' + v + '"><span>' + esc(label) + (small ? ' <small>' + esc(small) + '</small>' : '') + '</span></label>';
-  $("#palateQs").innerHTML = PALATE_QS.map(q => '<fieldset><legend>' + esc(q.q) + '</legend><div class="chips">' + q.opts.map(o => chip(q.id, o[0], o[1], o[2])).join("") + '</div></fieldset>').join("");
-  $("#wheel").innerHTML = FAMILIES.map(f => '<label class="fam" style="--c:' + famColor(f[0]) + '"><input type="checkbox" name="notes" id="note-' + f[0] + '" value="' + f[0] + '"><span><i class="dot" style="background:' + famColor(f[0]) + '"></i><b>' + esc(f[1]) + '</b><small>' + esc(f[2]) + '</small></span></label>').join("");
+  const chip = (name, v, label, small, cls) => '<label class="chip ' + (cls || "") + '"><input type="radio" name="' + name + '" id="' + name + '-' + v + '" value="' + v + '"><span>' + esc(label) + (small ? ' <small>' + esc(small) + '</small>' : '') + '</span></label>';
+  $("#palateQs").innerHTML = PALATE_QS.map(q => '<fieldset><legend>' + esc(q.q) + '</legend><div class="chips">' + q.opts.map(o => chip(q.id, o[0], o[1], o[2], q.cls)).join("") + '</div></fieldset>').join("");
+  $("#wheel").innerHTML = FAMILIES.map(f => '<label class="fam" style="--tint:' + f[4] + '"><input type="checkbox" name="notes" id="note-' + f[0] + '" value="' + f[0] + '"><span>' + ficon(f[0]) + '<b>' + esc(f[1]) + '</b><small>' + esc(f[2]) + '</small></span></label>').join("");
   $("#scales").innerHTML = SCALES.map(s => '<fieldset class="scale"><legend>' + s[1] + '</legend><div class="row">' +
     [1,2,3,4,5].map(i => '<label for="' + s[0] + i + '"><input type="radio" name="' + s[0] + '" id="' + s[0] + i + '" value="' + i + '"><span>' + i + '</span></label>').join("") +
     '</div><div class="ends"><span>' + esc(s[2]) + '</span><span>' + esc(s[3]) + '</span></div></fieldset>').join("");
-  $("#textures").innerHTML = TEXTURES.map(t => chip("texture", t[0], t[1])).join("");
-  $("#revisit").innerHTML = REVISIT.map(r => chip("revisit", r[0], r[1])).join("");
-  $("#rate").innerHTML = [1,2,3,4,5].map(i => '<label class="cup-opt" for="r' + i + '" data-v="' + i + '"><input class="sr" type="radio" name="rating" id="r' + i + '" value="' + i + '">' + CUP + '<span class="sr">' + i + ' cups, ' + RATE[i] + '</span></label>').join("");
+  $("#textures").innerHTML = TEXTURES.map(t => chip("texture", t[0], t[1], "", "c-mint")).join("");
+  $("#revisit").innerHTML = REVISIT.map(r => chip("revisit", r[0], r[1], "", "")).join("");
+  $("#rate").innerHTML = [1,2,3,4,5].map(i => '<label class="cup-opt" for="r' + i + '" data-v="' + i + '"><input class="sr" type="radio" name="rating" id="r' + i + '" value="' + i + '">' + MCUP + '<span class="sr">' + i + ' cups, ' + RATE[i] + '</span></label>').join("");
+  $("#dots").innerHTML = STEPS.map(() => "<i></i>").join("");
 
   const chosenRating = () => +(form.elements.rating.value || 0);
   const paintRate = n => {
     document.querySelectorAll(".cup-opt").forEach(l => l.classList.toggle("on", +l.dataset.v <= n));
-    $("#ratelbl").innerHTML = n ? "<b>" + n + " of 5.</b> " + RATE[n] : "Tap a cup";
+    $("#ratelbl").textContent = n ? n + " cups: " + RATE[n] : "Tap a cup to fill it";
   };
   $("#rate").addEventListener("change", () => paintRate(chosenRating()));
   $("#rate").addEventListener("mouseover", e => { const l = e.target.closest(".cup-opt"); if (l) paintRate(+l.dataset.v); });
@@ -447,23 +653,35 @@ legend{font-weight:600;font-size:15px;margin:0 0 9px;padding:0}
   });
 
   // ---------- Steps ----------
-  const renderProgress = () => {
-    $("#prog").innerHTML = STEPS.map((s, i) => '<li class="' + (i < st.step ? "done" : i === st.step ? "now" : "") + '"' + (i === st.step ? ' aria-current="step"' : '') + '>' + s + '</li>').join("");
+  const NUDGE = ["", "", "", "Halfway there!", "Almost done!", "Last step!"];
+  const renderMeter = () => {
+    const n = Math.min(st.step, 6);
+    $("#liquid").style.transform = "scaleY(" + (n / 6).toFixed(3) + ")";
+    $("#meterTxt").innerHTML = n === 6 ? "All done!<span>Your cup is full</span>" : "Step " + (n + 1) + " of 6<span>" + STEPS[n] + (NUDGE[n] ? ". " + NUDGE[n] : "") + "</span>";
+    [...$("#dots").children].forEach((d, i) => { d.className = i < n ? "done" : i === n ? "now" : ""; });
   };
   const go = (n, focus) => {
     st.step = n;
     document.querySelectorAll(".step").forEach(el => { el.hidden = +el.dataset.step !== n; });
     $("#nav").hidden = n === 6;
-    $("#prog").hidden = n === 6;
     $("#back").classList.toggle("invisible", n === 0);
     $("#skip").hidden = n !== 4;
-    $("#next").textContent = n === 5 ? "Post review" : "Next";
+    $("#next").textContent = n === 5 ? "Post my review" : "Next";
     $("#err").textContent = "";
-    renderProgress();
+    if (n === 1) showIntel();
+    if (n === 2) {
+      const last = store.get("cupnotes.palate", null);
+      const empty = PALATE_QS.every(q => !form.elements[q.id].value);
+      if (last && empty) {
+        PALATE_QS.forEach(q => { const el = document.getElementById(q.id + "-" + last[q.id]); if (el) el.checked = true; });
+        $("#remember").hidden = false;
+      }
+    }
+    renderMeter();
     if (focus) {
       const box = document.querySelector('.step[data-step="' + n + '"]');
       const el = box.querySelector("input.field, textarea, input[type=radio], input[type=checkbox], button");
-      box.scrollIntoView({ block: "nearest" });
+      $(".composer").scrollIntoView({ block: "nearest", behavior: reduceMotion ? "auto" : "smooth" });
       if (el) el.focus({ preventScroll: true });
     }
   };
@@ -474,9 +692,9 @@ legend{font-weight:600;font-size:15px;margin:0 0 9px;padding:0}
     if (s === 2) { for (const q of PALATE_QS) if (!form.elements[q.id].value) return "Answer this one too: " + q.q; }
     if (s === 3 && val("order").length < 2) return "Tell us what you ordered.";
     if (s === 5) {
-      if (!chosenRating()) return "Rate it from 1 to 5 cups.";
+      if (!chosenRating()) return "Pour a rating: tap 1 to 5 cups.";
       if (!form.elements.revisit.value) return "Say whether you'd come back.";
-      if (val("feedback").length < 3) return "Write a line or two of feedback.";
+      if (val("feedback").length < 3) return "Write a line or two about it.";
     }
     return "";
   };
@@ -491,6 +709,31 @@ legend{font-weight:600;font-size:15px;margin:0 0 9px;padding:0}
   $("#back").addEventListener("click", () => { if (st.step > 0) go(st.step - 1, true); });
   $("#skip").addEventListener("click", () => { st.tasting = false; go(5, true); });
   $("#again").addEventListener("click", () => { clearForm(); go(1, true); });
+  $("#notMe").addEventListener("click", () => {
+    $("#welcome").hidden = true; $("#name").value = ""; st.me = "";
+    store.set("cupnotes.name", ""); store.set("cupnotes.palate", null);
+    PALATE_QS.forEach(q => form.querySelectorAll('input[name="' + q.id + '"]').forEach(i => { i.checked = false; }));
+    $("#remember").hidden = true;
+    go(0, true); render();
+  });
+
+  // What friends already said about the cafe being typed
+  let intelTimer = null;
+  const showIntel = () => {
+    const box = $("#intel"), typed = val("cafe"), k = keyOf(typed);
+    if (k.length < 2) { box.hidden = true; return; }
+    const c = cafeList().find(x => x.key === k);
+    if (c) {
+      const last = st.reviews.find(r => (r.cafe_key || keyOf(r.cafe)) === k);
+      box.innerHTML = '<span class="on">' + MCUP + '</span><div><b>Friends have been here!</b> ' + c.n + (c.n === 1 ? " review" : " reviews") + ', averaging ' + c.avg.toFixed(1) + ' cups.' +
+        (c.top.length ? ' Most tasted: <span class="fl-row">' + c.top.map(f => ficon(f)).join("") + '</span> ' + c.top.map(f => esc(FAM[f][1])).join(", ") + '.' : '') +
+        (last ? ' Last review by ' + esc(last.name || "someone") + ', ' + ago(last.created_at) + '.' : '') + '</div>';
+    } else {
+      box.innerHTML = '<div><b>A new spot!</b> Nobody has reviewed it yet. Post first and you earn the Trailblazer stamp.</div>';
+    }
+    box.hidden = false;
+  };
+  $("#cafe").addEventListener("input", () => { clearTimeout(intelTimer); intelTimer = setTimeout(showIntel, 250); });
 
   const collectTasting = () => {
     if (!st.tasting) return null;
@@ -540,6 +783,58 @@ legend{font-weight:600;font-size:15px;margin:0 0 9px;padding:0}
     const name = $("#name").value;
     form.reset(); $("#name").value = name;
     setPhoto(null); paintRate(0); st.tasting = true;
+    $("#intel").hidden = true; $("#remember").hidden = true;
+  };
+
+  // ---------- Passport stamps ----------
+  const statsFor = name => {
+    const who = keyOf(name);
+    const mine = who ? st.reviews.filter(r => keyOf(r.name) === who) : [];
+    const firstByCafe = {};
+    st.reviews.forEach(r => { const k = r.cafe_key || keyOf(r.cafe); if (!firstByCafe[k] || r.created_at < firstByCafe[k].created_at) firstByCafe[k] = r; });
+    const perCafe = {}, fams = new Set();
+    mine.forEach(r => { const k = r.cafe_key || keyOf(r.cafe); perCafe[k] = (perCafe[k] || 0) + 1; notesOf(r).forEach(f => fams.add(f)); });
+    return {
+      n: mine.length, cafes: Object.keys(perCafe).length, fams: fams.size,
+      photos: mine.filter(r => r.photo_path).length,
+      long: mine.filter(r => String(r.feedback || "").length >= 150).length,
+      same: Math.max(0, ...Object.values(perCafe)),
+      firsts: mine.filter(r => firstByCafe[r.cafe_key || keyOf(r.cafe)] === r).length,
+      helpful: mine.reduce((a, r) => a + (Number(r.helpful_count) || 0), 0)
+    };
+  };
+  const badgesFor = name => {
+    const m = statsFor(name);
+    return BADGES.filter(b => !b.react || st.hasReact).map(b => { const v = b.v(m); return { ...b, have: Math.min(v, b.need), got: v >= b.need }; });
+  };
+  const stampHTML = (b, fresh) => {
+    const rot = (hash(b.id) % 17) - 8;
+    const prog = !b.got && b.need > 1 && b.have > 0 ? '<span class="prog" aria-hidden="true"><i style="width:' + Math.round(b.have / b.need * 100) + '%"></i></span>' : '';
+    return '<div class="stampx' + (b.got ? '' : ' locked') + (fresh ? ' fresh' : '') + '" style="--c:' + b.c + ';--r:' + rot + 'deg">' +
+      '<span class="disc">' + BADGE_ICON[b.id] + '</span><b>' + esc(b.name) + '</b>' +
+      '<small>' + (b.got ? 'Earned' : esc(b.how) + (b.need > 1 && b.have ? ' (' + b.have + '/' + b.need + ')' : '')) + '</small>' + prog + '</div>';
+  };
+  const renderPassport = () => {
+    const list = badgesFor(st.me);
+    const got = list.filter(b => b.got).length;
+    $("#passport").hidden = !st.loaded || st.failed;
+    $("#ppTitle").textContent = st.me ? st.me + "'s cup passport" : "Your cup passport";
+    $("#ppCount").textContent = got + " of " + list.length + " stamps";
+    $("#stamps").innerHTML = list.map(b => stampHTML(b, false)).join("");
+  };
+
+  const confetti = () => {
+    if (reduceMotion) return;
+    for (let i = 0; i < 28; i++) {
+      const b = document.createElement("span");
+      b.className = "bean";
+      b.style.left = (Math.random() * 100) + "vw";
+      b.style.setProperty("--spin", (Math.random() * 720 - 360) + "deg");
+      b.style.animationDuration = (1.4 + Math.random() * 1.2) + "s";
+      b.style.animationDelay = (Math.random() * .3) + "s";
+      document.body.appendChild(b);
+      setTimeout(() => b.remove(), 3200);
+    }
   };
 
   // ---------- Post ----------
@@ -547,7 +842,7 @@ legend{font-weight:600;font-size:15px;margin:0 0 9px;padding:0}
     const err = $("#err"), btn = $("#next"), back = $("#back");
     if (!sb) { err.textContent = "Can't reach the review database. Check your connection and reload the page."; return; }
     btn.disabled = back.disabled = true; btn.textContent = "Posting…";
-    const done = () => { btn.disabled = back.disabled = false; btn.textContent = "Post review"; };
+    const done = () => { btn.disabled = back.disabled = false; btn.textContent = "Post my review"; };
     let photo_path = null;
     if (st.photo) {
       try { photo_path = await uploadPhoto(st.photo); }
@@ -566,6 +861,7 @@ legend{font-weight:600;font-size:15px;margin:0 0 9px;padding:0}
       rating: chosenRating(), revisit: form.elements.revisit.value, feedback: val("feedback"),
       photo_path, tasting: collectTasting()
     };
+    const before = new Set(badgesFor(payload.name).filter(b => b.got).map(b => b.id));
     const token = uuid();
     const { data, error } = await sb.rpc("post_review", { r: payload, token });
     if (error) {
@@ -575,9 +871,37 @@ legend{font-weight:600;font-size:15px;margin:0 0 9px;padding:0}
     }
     tokens[data] = token; store.set("cupnotes.tokens", tokens);
     store.set("cupnotes.name", payload.name);
-    done(); clearForm(); go(6);
+    store.set("cupnotes.palate", { coffee: payload.coffee, palate: payload.palate, purpose: payload.purpose });
+    st.me = payload.name;
+    done(); clearForm(); go(6); confetti();
+    $("#unlocked").hidden = true; $("#twin").hidden = true;
     $("#again").focus();
-    load();
+    await load();
+    celebrate(payload, data, before);
+  };
+
+  // The ending people remember: new stamps plus a taste twin
+  const celebrate = (p, id, before) => {
+    const fresh = badgesFor(p.name).filter(b => b.got && !before.has(b.id));
+    if (fresh.length) {
+      $("#unlocked").innerHTML = '<b>' + (fresh.length === 1 ? "New stamp for your passport!" : fresh.length + " new stamps for your passport!") + '</b><div class="stamps">' + fresh.map(b => stampHTML(b, true)).join("") + '</div>';
+      $("#unlocked").hidden = false;
+    }
+    const k = keyOf(p.cafe), myNotes = (p.tasting && p.tasting.notes) || [];
+    const others = st.reviews.filter(r => r.id !== id && keyOf(r.name) !== keyOf(p.name));
+    const overlap = r => notesOf(r).filter(f => myNotes.includes(f));
+    const twin = others.filter(r => overlap(r).length).sort((a, b) => ((b.cafe_key === k) - (a.cafe_key === k)) || overlap(b).length - overlap(a).length)[0];
+    const sameCafe = st.reviews.filter(r => (r.cafe_key || keyOf(r.cafe)) === k).length;
+    let msg = "";
+    if (twin) {
+      const shared = overlap(twin).map(f => FAM[f][1].toLowerCase());
+      msg = '<b>Taste twin:</b> ' + esc(twin.name || "Someone") + ' also tasted ' + esc(shared.join(" and ")) + (twin.cafe_key === k ? ' here.' : ' at ' + esc(twin.cafe) + '.') + ' Maybe go together next time?';
+    } else if (sameCafe <= 1) {
+      msg = '<b>You found it first!</b> Yours is the first review of ' + esc(p.cafe) + '.';
+    } else {
+      msg = '<b>Review number ' + sameCafe + '</b> for ' + esc(p.cafe) + '. Your notes help the next person order well.';
+    }
+    $("#twin").innerHTML = msg; $("#twin").hidden = false;
   };
 
   // ---------- Wall ----------
@@ -609,35 +933,35 @@ legend{font-weight:600;font-size:15px;margin:0 0 9px;padding:0}
     const counts = {};
     st.reviews.forEach(r => notesOf(r).forEach(f => { counts[f] = (counts[f] || 0) + 1; }));
     const total = Object.values(counts).reduce((a, b) => a + b, 0);
-    const R = 38, C = 2 * Math.PI * R;
-    let svg = '<circle cx="50" cy="50" r="' + R + '" fill="none" stroke="var(--line)" stroke-width="16"/>';
+    const R = 36, C = 2 * Math.PI * R;
+    let svg = '<circle cx="50" cy="50" r="' + R + '" fill="none" stroke="' + INK + '" stroke-width="20"/><circle cx="50" cy="50" r="' + R + '" fill="none" stroke="#E2E8F3" stroke-width="16"/>';
     if (total) {
       let off = 0;
-      const gap = Object.keys(counts).length > 1 ? 1.2 : 0;
       FAMILIES.forEach(f => {
         const n = counts[f[0]]; if (!n) return;
         const len = n / total * C;
-        svg += '<circle cx="50" cy="50" r="' + R + '" fill="none" stroke="' + famColor(f[0]) + '" stroke-width="16" stroke-dasharray="' + Math.max(len - gap, 0.5).toFixed(2) + ' ' + C.toFixed(2) + '" stroke-dashoffset="' + (-off).toFixed(2) + '" transform="rotate(-90 50 50)"><title>' + esc(f[1]) + ': ' + n + '</title></circle>';
+        svg += '<circle cx="50" cy="50" r="' + R + '" fill="none" stroke="' + f[3] + '" stroke-width="16" stroke-dasharray="' + len.toFixed(2) + ' ' + C.toFixed(2) + '" stroke-dashoffset="' + (-off).toFixed(2) + '" transform="rotate(-90 50 50)"><title>' + esc(f[1]) + ': ' + n + '</title></circle>';
         off += len;
       });
     }
-    svg += '<text x="50" y="49" text-anchor="middle" font-family="Young Serif, Georgia, serif" font-size="18" fill="var(--ink)">' + st.reviews.length + '</text>' +
-      '<text x="50" y="63" text-anchor="middle" font-size="9" fill="var(--muted)">' + (st.reviews.length === 1 ? "review" : "reviews") + '</text>';
+    svg += '<circle cx="50" cy="50" r="24" fill="#fff" stroke="' + INK + '" stroke-width="2"/>' +
+      '<text x="50" y="52" text-anchor="middle" font-family="Shrikhand, Georgia, serif" font-size="17" fill="' + INK + '">' + total + '</text>' +
+      '<text x="50" y="63" text-anchor="middle" font-family="Nunito, sans-serif" font-weight="700" font-size="8" fill="#6E6159">' + (total === 1 ? "note" : "notes") + '</text>';
     $("#ring").innerHTML = svg;
-    $("#ring").setAttribute("aria-label", total ? "Flavour notes from " + st.reviews.length + " reviews" : "No flavour notes yet");
+    $("#ring").setAttribute("aria-label", total ? total + " flavour notes across all reviews" : "No flavour notes yet");
     const top = Object.entries(counts).sort((a, b) => b[1] - a[1]).slice(0, 4);
-    $("#ringCap").textContent = total ? "Flavours we've tasted most" : "Flavours you taste will fill this ring";
-    $("#legend").innerHTML = top.map(([k, n]) => '<li><i class="dot" style="background:' + famColor(k) + '"></i>' + esc(FAM[k][1]) + ' <span class="count">' + n + '</span></li>').join("");
+    $("#legend").innerHTML = top.length ? top.map(([k, n]) => '<li>' + ficon(k) + esc(FAM[k][1]) + ' <span class="n">' + n + '</span></li>').join("") :
+      '<li class="empty-l">Flavours from the tasting step will colour this ring.</li>';
   };
 
-  const reviewHTML = r => {
+  const reviewHTML = (r, idx) => {
     const n = clampR(r.rating), t = r.tasting && typeof r.tasting === "object" ? r.tasting : null;
     const notes = notesOf(r);
     const bars = SCALES.filter(s => t && Number.isInteger(t[s[0]]) && t[s[0]] >= 1 && t[s[0]] <= 5)
       .map(s => '<span class="k">' + s[1] + '</span><span class="segs" role="img" aria-label="' + s[1] + ' ' + t[s[0]] + ' of 5">' + [1,2,3,4,5].map(i => '<i class="' + (i <= t[s[0]] ? "f" : "") + '"></i>').join("") + '</span>').join("");
     const tex = t && TEXTURE[t.texture];
     const tasting = (notes.length || bars || tex) ? '<div class="tasting">' +
-      (notes.length ? '<div class="notes">' + notes.map(k => '<span class="note" style="--c:' + famColor(k) + '"><i class="dot"></i>' + esc(FAM[k][1]) + '</span>').join("") + '</div>' : '') +
+      (notes.length ? '<div class="notes">' + notes.map(k => '<span class="note">' + ficon(k) + esc(FAM[k][1]) + '</span>').join("") + '</div>' : '') +
       (bars ? '<div class="bars">' + bars + '</div>' : '') +
       (tex ? '<span class="texture">Mouthfeel: <b>' + esc(tex) + '</b></span>' : '') + '</div>' : '';
     const img = photoUrl(r.photo_path);
@@ -645,30 +969,45 @@ legend{font-weight:600;font-size:15px;margin:0 0 9px;padding:0}
     const bk = BACK[r.revisit]; if (bk) who.push('<span class="' + bk[1] + '">' + bk[0] + '</span>');
     ["coffee", "palate", "purpose"].forEach(k => { const v = TAG[k][r[k]]; if (v) who.push('<span>' + esc(v) + '</span>'); });
     const mine = tokens[r.id];
-    return '<article class="review">' +
-      '<div class="r-head"><h3>' + esc(r.cafe) + (r.area ? '<span class="area">' + esc(r.area) + '</span>' : '') + '</h3>' + cups(n) + '</div>' +
-      '<p class="verdict"><b>' + RATE[n] + '</b></p>' +
+    const tilt = [-1.2, 0.8, -0.5, 1.1, -0.9, 0.5][hash(r.id) % 6];
+    const reactBtn = (kind, icon, label, count) => {
+      const n = Number(count) || 0, on = !!reacted[r.id + ":" + kind];
+      return mine
+        ? '<span class="react" title="Taps on your review">' + icon + label + ' <span class="ct">' + n + '</span></span>'
+        : '<button type="button" class="react' + (on ? ' on' : '') + '" data-id="' + esc(r.id) + '" data-kind="' + kind + '" aria-pressed="' + on + '">' + icon + label + ' <span class="ct">' + n + '</span></button>';
+    };
+    const reacts = st.hasReact ? '<div class="reacts">' + reactBtn("helpful", I_THUMB, "Helpful", r.helpful_count) + reactBtn("want", I_PIN, "Want to go", r.want_count) + '</div>' : '';
+    return '<article class="review b' + (hash(r.cafe_key || r.cafe) % 6) + '" style="--tilt:' + tilt + 'deg">' +
+      '<div class="r-head"><h3>' + esc(r.cafe) + (r.area ? '<span class="area">' + esc(r.area) + '</span>' : '') + '</h3>' +
+      '<div class="stamp">' + cups(n) + '<b>' + RATE[n] + '</b></div></div>' +
       (img ? '<img class="shot" loading="lazy" alt="Photo from ' + esc(r.cafe) + '" src="' + esc(img) + '" onerror="this.remove()">' : '') +
-      '<p class="ordered"><span class="what"><span class="lbl">Ordered </span>' + esc(r.order_text) + '</span>' + (r.bill ? '<span class="bill">₹' + Number(r.bill).toLocaleString("en-IN") + '</span>' : '') + '</p>' +
+      '<div class="receipt"><span class="lbl">Ordered</span><div class="row"><span class="what">' + esc(r.order_text) + '</span>' + (r.bill ? '<span class="bill">₹' + Number(r.bill).toLocaleString("en-IN") + '</span>' : '') + '</div></div>' +
       tasting +
       '<p class="fb">' + esc(r.feedback) + '</p>' +
       (who.length ? '<div class="who">' + who.join("") + '</div>' : '') +
-      '<div class="r-foot"><span><b>' + esc(r.name || "Someone") + '</b>, ' + ago(r.created_at) + '</span>' +
+      reacts +
+      '<div class="r-foot"><span><span class="by">' + esc(r.name || "Someone") + '</span> <span class="when">' + ago(r.created_at) + '</span></span>' +
       (mine ? '<button type="button" class="del' + (st.armed === r.id ? ' arm' : '') + '" data-id="' + esc(r.id) + '">' + (st.armed === r.id ? 'Tap again to delete' : 'Delete') + '</button>' : '') +
       '</div></article>';
   };
 
+  const EMPTY_ART = '<svg viewBox="0 0 120 120" aria-hidden="true"><ellipse cx="60" cy="104" rx="40" ry="7" fill="#D7E3F7"/><path d="M28 46h56v22a26 26 0 0 1-26 26h-4a26 26 0 0 1-26-26z" fill="#fff" stroke="#2E211B" stroke-width="3.5" stroke-linejoin="round"/><path d="M84 52h4a11 11 0 0 1 0 22h-6" fill="none" stroke="#2E211B" stroke-width="3.5" stroke-linecap="round"/><circle cx="48" cy="66" r="3.5" fill="#2E211B"/><circle cx="68" cy="66" r="3.5" fill="#2E211B"/><path d="M52 80c3-3 9-3 12 0" fill="none" stroke="#2E211B" stroke-width="3" stroke-linecap="round"/><path d="M48 36c-5-5 5-8 0-14M64 34c-5-5 5-8 0-14" fill="none" stroke="#2E211B" stroke-width="3" stroke-linecap="round" opacity=".5"/></svg>';
+
   const render = () => {
-    renderRing();
     const list = cafeList();
+    $("#sReviews").textContent = st.reviews.length;
+    $("#sCafes").textContent = list.length;
+    $("#sAvg").textContent = st.reviews.length ? (st.reviews.reduce((a, r) => a + clampR(r.rating), 0) / st.reviews.length).toFixed(1) : "–";
     $("#cafelist").innerHTML = list.map(c => '<option value="' + esc(c.name) + '"></option>').join("");
-    $("#board").hidden = list.length === 0;
-    $("#rows").innerHTML = list.map(c =>
-      '<button type="button" class="cafe-row" data-k="' + esc(c.key) + '" aria-pressed="' + (st.filter === c.key) + '">' +
+    $("#summary").hidden = list.length === 0;
+    renderRing();
+    renderPassport();
+    $("#rows").innerHTML = list.map((c, i) =>
+      '<button type="button" class="cafe-row r' + (i + 1) + '" data-k="' + esc(c.key) + '" aria-pressed="' + (st.filter === c.key) + '">' +
+      '<span class="rank">' + (i + 1) + '</span>' +
       '<span class="nm">' + esc(c.name) + (c.area ? '<small>' + esc(c.area) + '</small>' : '') + '</span>' +
-      '<span class="dots">' + c.top.map(k => '<i class="dot" title="' + esc(FAM[k][1]) + '" style="background:' + famColor(k) + '"></i>').join("") + '</span>' +
-      '<span class="avg">' + c.avg.toFixed(1) + '</span>' +
-      '<span class="n">' + c.n + (c.n === 1 ? ' review' : ' reviews') + '</span></button>').join("");
+      '<span class="fl-dots">' + c.top.map(k => ficon(k)).join("") + '</span>' +
+      '<span class="score">' + c.avg.toFixed(1) + ' cups<small>' + c.n + (c.n === 1 ? ' review' : ' reviews') + '</small></span></button>').join("");
 
     const fc = st.filter && list.find(c => c.key === st.filter);
     if (st.filter && !fc) st.filter = null;
@@ -680,9 +1019,9 @@ legend{font-weight:600;font-size:15px;margin:0 0 9px;padding:0}
 
     const feed = $("#feed");
     feed.className = "";
-    if (!sb || st.failed) { feed.innerHTML = '<div class="empty"><strong>Reviews didn\'t load</strong>Check your connection, then reload the page.</div>'; return; }
-    if (!st.loaded) { feed.innerHTML = '<div class="empty">Loading reviews…</div>'; return; }
-    if (!rows.length) { feed.innerHTML = '<div class="empty"><strong>No reviews yet</strong>Fill in the review card to post the first one. It shows up here for everyone with the link.</div>'; return; }
+    if (!sb || st.failed) { feed.innerHTML = '<div class="empty">' + EMPTY_ART + '<strong>Reviews didn\'t load</strong>Check your connection, then reload the page.</div>'; return; }
+    if (!st.loaded) { feed.innerHTML = '<div class="empty">' + EMPTY_ART + 'Brewing the reviews…</div>'; return; }
+    if (!rows.length) { feed.innerHTML = '<div class="empty">' + EMPTY_ART + '<strong>The wall is empty</strong>Fill in the card to post the first review. It shows up here for everyone with the link.</div>'; return; }
     feed.className = "feed";
     feed.innerHTML = rows.map(reviewHTML).join("");
   };
@@ -695,6 +1034,30 @@ legend{font-weight:600;font-size:15px;margin:0 0 9px;padding:0}
   $("#sort").addEventListener("change", e => { st.sort = e.target.value; render(); });
   let armTimer = null;
   $("#feed").addEventListener("click", async e => {
+    const rb = e.target.closest("button.react");
+    if (rb && sb) {
+      const id = rb.dataset.id, kind = rb.dataset.kind, key = id + ":" + kind;
+      const r = st.reviews.find(x => x.id === id); if (!r) return;
+      const field = kind === "helpful" ? "helpful_count" : "want_count";
+      const was = !!reacted[key];
+      // Optimistic update so the tap feels instant
+      if (was) delete reacted[key]; else reacted[key] = true;
+      r[field] = Math.max(0, (Number(r[field]) || 0) + (was ? -1 : 1));
+      render();
+      const el = document.querySelector('button.react[data-id="' + CSS.escape(id) + '"][data-kind="' + kind + '"]');
+      if (el && !reduceMotion) el.classList.add("bump");
+      const { data, error } = await sb.rpc("toggle_reaction", { review: id, voter: device, kind });
+      if (error || !data) {
+        if (was) reacted[key] = true; else delete reacted[key];
+        r[field] = Math.max(0, (Number(r[field]) || 0) + (was ? 1 : -1));
+      } else {
+        if (data.on) reacted[key] = true; else delete reacted[key];
+        r.helpful_count = data.helpful; r.want_count = data.want;
+      }
+      store.set("cupnotes.reacted", reacted);
+      render();
+      return;
+    }
     const b = e.target.closest(".del"); if (!b || !sb) return;
     const id = b.dataset.id;
     if (st.armed !== id) {
@@ -716,7 +1079,12 @@ legend{font-weight:600;font-size:15px;margin:0 0 9px;padding:0}
     if (!sb) { render(); return; }
     if (loading) { again = true; return; }
     loading = true;
-    const { data, error } = await sb.from("reviews").select(COLS).order("created_at", { ascending: false }).limit(500);
+    const q = cols => sb.from("reviews").select(cols).order("created_at", { ascending: false }).limit(500);
+    let { data, error } = await q(st.hasReact ? COLS_R : COLS);
+    if (error && st.hasReact && /helpful_count|want_count|42703/.test((error.message || "") + (error.code || ""))) {
+      st.hasReact = false; // reaction counters not set up yet: run supabase/reactions.sql
+      ({ data, error } = await q(COLS));
+    }
     loading = false;
     if (error) { if (!st.loaded) st.failed = true; }
     else { st.reviews = data || []; st.loaded = true; st.failed = false; }
@@ -726,9 +1094,15 @@ legend{font-weight:600;font-size:15px;margin:0 0 9px;padding:0}
   const soon = () => { clearTimeout(timer); timer = setTimeout(load, 300); };
 
   // ---------- Boot ----------
+  // Returning visitors start one step in, with their name already filled (a head start makes finishing likelier)
   const savedName = store.get("cupnotes.name", "");
-  if (savedName) $("#name").value = savedName;
-  go(0); render(); load();
+  if (savedName) {
+    $("#name").value = savedName; st.me = savedName;
+    $("#welcomeTxt").textContent = "Welcome back, " + savedName + "! Your name is filled in.";
+    $("#welcome").hidden = false;
+    go(1);
+  } else go(0);
+  render(); load();
   if (sb) sb.channel("reviews-feed").on("postgres_changes", { event: "*", schema: "public", table: "reviews" }, soon).subscribe();
   document.addEventListener("visibilitychange", () => { if (!document.hidden) load(); });
   setInterval(() => { if (st.reviews.length) render(); }, 60000);
